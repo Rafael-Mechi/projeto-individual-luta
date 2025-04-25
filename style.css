@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+.container{
+    display: flex;
+    width: 100%;
+    margin: auto; 
+}
+
+.header .container { /*somente o css do container que esteja dentro do header. Os outros containers não são modificados*/
+    justify-content: space-between;
+    background-color: rgb(49, 127, 230);
+    align-items: center;
+    padding: 17px 0;
+} 
+
+.navbar{
+    display: flex;
+    margin-right: 70px;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+
+    font-family: 'Questrial', sans-serif;
+}
+
+.header a{
+    font-size: 20px;
+    margin-left: 70px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.header a:hover{
+    opacity: 0.7;
+}
+
+
+/*PÁGINA INICIAL*/
+
+/*BOAS VINDAS*/
+.container_boasvindas{
+    font-family: 'Questrial', sans-serif;
+    text-align: center;
+    justify-content: center;
+    height: 700px;
+    margin-bottom: 300px;
+}
+
+.container_boasvindas h1{
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.boasvindas_conteudo{
+    display: flex;
+    padding-top: 50px;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.boasvindas_texto{
+    font-size: 20px;
+    width: 30%;
+    text-align: justify;
+}
+
+
+.boasvindas_texto p{
+    font-size: 22px;
+    align-self: center;
+}
+
+.boasvindas_img{
+    height: 500px;
+    width: 700px;
+}
+
+.boasvindas_img img{
+    height: 100%;
+    width: 700px;
+    margin-left: 30px;
+    border-radius: 20px;
+}
+/*FIM BOAS VINDAS*/
+
+
+/*ORIGENS*/
+.container_origens{
+    font-family: 'Questrial', sans-serif;
+    text-align: center;
+    justify-content: center;
+    height: 700px;
+    margin-bottom: 300px;
+}
+
+
+/*FIM ORIGENS*/
+.origens_conteudo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.origens_imgs{
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    width: 500px;
+}
+
+.origens_texto{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+/*FIM PÁGINA INICIAL*/
