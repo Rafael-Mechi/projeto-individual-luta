@@ -7,6 +7,7 @@
 }
 
 .header .container { /*somente o css do container que esteja dentro do header. Os outros containers não são modificados*/
+    display: flex;
     justify-content: space-between;
     background-color: rgb(49, 127, 230);
     align-items: center;
@@ -43,7 +44,7 @@
     text-align: center;
     justify-content: center;
     height: 700px;
-    margin-bottom: 300px;
+    margin-bottom: 200px;
 }
 
 .container_boasvindas h1{
@@ -90,13 +91,12 @@
     text-align: center;
     justify-content: center;
     height: 700px;
-    margin-bottom: 300px;
+    margin-bottom: 500px;
 }
 
-
-/*FIM ORIGENS*/
 .origens_conteudo{
     display: flex;
+    height: 100%;
     flex-direction: row;
     justify-content: space-evenly;
 }
@@ -108,10 +108,195 @@
     width: 500px;
 }
 
+.origens_imgs img{
+    border-radius: 15px;
+}
+
 .origens_texto{
     display: flex;
+    height: 100%;
+    width: 45%;
     align-items: center;
-    text-align: center;
+    text-align: justify;
 }
+
+.origens_texto p{
+    font-size: 25px;
+}
+/*FIM ORIGENS*/
+/*
+
+.container_modernidade{
+    font-family: 'Questrial', sans-serif;
+    text-align: center;
+    justify-content: center;
+    height: 700px;
+    margin-bottom: 200px;
+}
+.modernidade_conteudo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.modernidade_imgs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 650px;
+    width: 600px;
+}
+
+.modernidade_imgs img{
+    height: 700px;
+    width: 170px;
+}
+
+
+.modernidade_texto{
+    display: flex;
+    height: 100%;
+    width: 45%;
+    align-items: center;
+    text-align: justify;
+}
+
+
+.modernidade_texto p{
+    font-size: 25px;
+}
+*/
+
+
+/*TORNEIOS*/
+.container_torneios{
+    font-family: 'Questrial', sans-serif;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 200px;
+}
+
+.torneio_conteudo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.torneio_conteudo img{
+    height: 450px;
+    width: 450px;
+    border-radius: 15px;
+}
+
+.torneio_conteudo p{
+    font-size: 20px;
+}
+
+.torneio_1{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: justify;
+    justify-content: space-around;
+    margin-bottom: 100px;
+}
+
+.torneio_1_img{
+    height: 500px;
+    width: 400px;
+}
+
+.torneio_1_texto{
+    font-size: 20px;
+    width: 50%;
+    text-align: justify;
+}
+
+
+.torneio_2{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: justify;
+    justify-content: space-around;
+    margin-bottom: 100px;
+}
+
+.torneio_2_img{
+    height: 500px;
+    width: 450px;
+}
+
+.torneio_2_texto{
+    font-size: 20px;
+    width: 55%;
+    text-align: justify;
+}
+
+.torneio_3{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: justify;
+    justify-content: space-around;
+    margin-bottom: 100px;
+}
+
+.torneio_3_img{
+    height: 500px;
+    width: 400px;
+}
+
+.torneio_3_texto{
+    font-size: 20px;
+    width: 50%;
+    text-align: justify;
+}
+
+
+/*FIM TORNEIOS*/
+
+/*LUTADORES*/
+.container_lutadores{
+    font-family: 'Questrial', sans-serif;
+    text-align: center;
+    justify-content: center;
+    height: 700px;
+    margin-bottom: 200px;
+    background-color: aqua;
+}
+
+.lutadores_conteudo{
+    display: flex;
+    flex-direction: row;
+    height: 300px;
+}
+
+.lutador{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+
+}
+
+.lutador_texto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lutador img{
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
+
+.lutador p{
+    width: 50%;
+    text-align: justify;
+}
+
+/*FIM LUTADORES*/
 
 /*FIM PÁGINA INICIAL*/
