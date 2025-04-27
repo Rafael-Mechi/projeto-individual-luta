@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
+body{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Questrial', sans-serif;
+}
+
 .container{
     display: flex;
     width: 100%;
@@ -90,9 +96,11 @@
     font-family: 'Questrial', sans-serif;
     text-align: center;
     justify-content: center;
-    height: 700px;
-    margin-bottom: 500px;
+    height: 1000px;
+    margin-bottom: 200px;
+    background-color: rgb(49, 127, 230);
 }
+
 
 .origens_conteudo{
     display: flex;
@@ -101,14 +109,16 @@
     justify-content: space-evenly;
 }
 
+
 .origens_imgs{
     display: flex;
     flex-direction: column;
-    height: 650px;
     width: 500px;
 }
 
 .origens_imgs img{
+    height: 300px;
+    margin-bottom: 10px;
     border-radius: 15px;
 }
 
@@ -124,48 +134,58 @@
     font-size: 25px;
 }
 /*FIM ORIGENS*/
-/*
 
+/*INÍCIO MODERNIDADE*/
 .container_modernidade{
-    font-family: 'Questrial', sans-serif;
-    text-align: center;
-    justify-content: center;
-    height: 700px;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
+
 .modernidade_conteudo{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
 }
 
-.modernidade_imgs{
+.modernidade_titulo{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 650px;
-    width: 600px;
+    text-align: center;
+    flex-direction: column;
+    padding: 5px;
 }
 
-.modernidade_imgs img{
-    height: 700px;
-    width: 170px;
+.modernidade_titulo h1 {
+    background-color: rgb(156, 153, 153);
 }
 
+.modernidade_lutas{
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    grid-template-rows: repeat(2, auto);   /* 2 linhas automáticas */
+    gap: 10px; /* espaçamento opcional entre as divs */
 
-.modernidade_texto{
-    display: flex;
-    height: 100%;
-    width: 45%;
-    align-items: center;
-    text-align: justify;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(76, 150, 125);
 }
 
-
-.modernidade_texto p{
-    font-size: 25px;
+.modernidade_lutas img{
+    height: 250px;
+    width: 250px;
+    border-radius: 10px;
 }
-*/
+
+.modernidade_lutas p{
+    font-size: 15px;
+    text-align: center;
+}
+
+.arte_marcial{
+    background-color: aquamarine;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+/*FIM MODERNIDADE*/
 
 
 /*TORNEIOS*/
@@ -174,7 +194,15 @@
     text-align: center;
     justify-content: center;
     margin-bottom: 200px;
+    background-image: url(imgs/banner_2.jpg);
+    background-size: cover;
+    background-position: center;
 }
+
+.container_torneios h1{
+    color: white;
+}
+
 
 .torneio_conteudo{
     display: flex;
@@ -188,8 +216,12 @@
     border-radius: 15px;
 }
 
+
 .torneio_conteudo p{
     font-size: 20px;
+    padding: 30px;
+    background-color: rgb(177, 170, 170);
+    border-radius: 20px;
 }
 
 .torneio_1{
@@ -286,6 +318,11 @@
     flex-direction: column;
 }
 
+.img_lutador img{
+    padding: 20px;
+    background-color: rgb(20, 214, 188);
+}
+
 .lutador img{
     height: 200px;
     width: 200px;
@@ -294,9 +331,38 @@
 
 .lutador p{
     width: 50%;
+    font-size: 20px;
     text-align: justify;
 }
 
 /*FIM LUTADORES*/
+
+/*FOOTER*/
+.footer{
+    display: flex;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    flex-direction: column;
+    font-size: 15px;
+    position: absolute;
+    width: 97.5%;
+    color: white;
+    text-align: center;
+
+    background-color: rgb(58, 58, 58);
+    padding: 20px;
+}
+
+.autor{
+    display: flex;
+    justify-content: center;
+}
+
+.redes_sociais{
+    display: flex;
+    justify-content: left;
+    margin-left: 10px;
+}
+
+/*FIM FOOTER*/
 
 /*FIM PÁGINA INICIAL*/
