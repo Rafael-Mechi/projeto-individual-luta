@@ -366,3 +366,71 @@ body{
 /*FIM FOOTER*/
 
 /*FIM PÁGINA INICIAL*/
+
+
+
+/*MINI GAME*/
+
+/*SELEÇÃO DE PERSONAGEM*/
+.container_minigame{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 500px;
+    width: 100%;
+}
+
+.selecao{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.selecao select{
+    margin-bottom: 20px;
+}
+
+.selecao button{
+    margin-bottom: 20px;
+    border: none;
+    color: white;
+    background-color: rgb(50, 50, 207);
+    padding: 15px;
+    font-size: 15px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.selecao button:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.selecao button:active{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0);
+}
+
+.selecao img{
+    height: 400px;
+    width: 400px;
+    background-color: coral;
+    border-radius: 10px;
+}
+
+.container_vencedor{
+    display: flex;
+    justify-content: center;
+
+}
+
+#h1_vencedor{
+    
+}
+
+
+
+/*FIM SELEÇÃO PERSONAGEM*/
+
+
+
+/*FIM MINI GAME*/
