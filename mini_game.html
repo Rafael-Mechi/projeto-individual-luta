@@ -54,11 +54,7 @@
         </div>
     </div>
 
-
-    <div class="container_vencedor">
-        <h1 id="h1_vencedor">VENCEDOR</h1>
-    </div>
-
+    <div class="container_vencedor" id="container_vencedor"></div>
 
     <div class="footer">
         <div class="autor">
@@ -74,7 +70,12 @@
         </div>
     </div>
 </body>
+
 <script>
+    let vitórias_usuario = 0;
+    let derrotas_usuario = 0;
+    let empates_usuario = 0;
+
     function selecionar_lutador() {
         const select = document.getElementById('select_personagem');
         const img = document.getElementById('lutador_escolhido');
@@ -84,22 +85,17 @@
 
             if (lutador === 'alex_pereira') {
                 img.src = 'imgs/alex_pereira.png';
-
                 p_lutador_escolhido.innerHTML = 'Nome: <b>Alex Pereira</b><br>Estilo de luta: Kickboxing<br><br>Vitórias:12<br>Derrotas:3<br>Empates:0<br><br>Pontuação geral: <b>1800</b>';
-
             } else if (lutador === 'jon_jones') {
                 img.src = 'imgs/jon_jones.jpg';
-
                 p_lutador_escolhido.innerHTML = 'Nome: <b>Jon Jones</b><br>Estilo de luta: MMA<br><br>Vitórias:28<br>Derrotas:1<br>Empates:0<br><br>Pontuação geral: <b>2200</b>';
-            
             } else {
                 img.src = ''; // Nenhum lutador selecionado
             }
-
         });
     }
-    window.addEventListener('DOMContentLoaded', selecionar_lutador);
 
+    window.addEventListener('DOMContentLoaded', selecionar_lutador);
 
     function sortear_lutador() {
         var min = 1;
@@ -107,17 +103,71 @@
         var aux = Math.random();
         var valor = (aux * (max - min) + min).toFixed();
 
-        if(valor == 1){
+        if (valor == 1) {
             img_lutador_sorteado.src = 'imgs/alex_pereira.png';
-
             p_lutador_sorteado.innerHTML = 'Nome: <b>Alex Pereira</b><br>Estilo de luta: Kickboxing<br><br>Vitórias:12<br>Derrotas:3<br>Empates:0<br><br>Pontuação geral: <b>1800</b>';
-        } 
-        
-        if(valor == 2){
-            img_lutador_sorteado.src = 'imgs/jon_jones.jpg';
+        }
 
+        if (valor == 2) {
+            img_lutador_sorteado.src = 'imgs/jon_jones.jpg';
             p_lutador_sorteado.innerHTML = 'Nome: <b>Jon Jones</b><br>Estilo de luta: MMA<br><br>Vitórias:28<br>Derrotas:1<br>Empates:0<br><br>Pontuação geral: <b>2200</b>';
         }
+        exibirVencedor();
+    }
+
+    function exibirVencedor() {
+        const escolhido = select_personagem.value;
+        const container = document.getElementById('container_vencedor');
+
+        // Verifica se foi feito um sorteio e uma escolha
+        if (!escolhido || !img_lutador_sorteado.src) {
+            return; // Sai da função se faltar info
+        }
+
+        // Pontuações fictícias para comparar
+        const pontuacoes = {
+            alex_pereira: 1800,
+            jon_jones: 2200
+        };
+
+        // Define quem ganhou
+        let vencedor = '';
+        let pontuacao_vencedor = 0;
+        let imagem_vencedor = '';
+
+        const sorteado = img_lutador_sorteado.src.includes('alex_pereira') ? 'alex_pereira' : 'jon_jones';
+
+        if (pontuacoes[escolhido] > pontuacoes[sorteado]) {
+            vencedor = escolhido;
+            vitórias_usuario++;
+        } else if (pontuacoes[sorteado] > pontuacoes[escolhido]) {
+            vencedor = sorteado;
+            derrotas_usuario++;
+        } else {
+            vencedor = 'empate';
+            empates_usuario++;
+        }
+
+        if (vencedor === 'empate') {
+            container.innerHTML = `<h2>Empate!</h2>`;
+        } else {
+            imagem_vencedor = vencedor === 'alex_pereira' ? 'imgs/alex_pereira.png' : 'imgs/jon_jones.jpg';
+            pontuacao_vencedor = pontuacoes[vencedor];
+
+            container.innerHTML = `
+                <h2 style="font-size:40px">Vencedor: ${vencedor === 'alex_pereira' ? 'Alex Pereira' : 'Jon Jones'}</h2>
+                <img src="${imagem_vencedor}" style="height: 250px;">
+                <p style="font-size:30px"><b>Pontuação:</b> ${pontuacao_vencedor}</p>
+                <div>
+                    <h3 style="font-size:35px">Status do Usuário:</h3>
+                    <p style="font-size:30px"><b>Vitórias:</b> ${vitórias_usuario}</p>
+                    <p style="font-size:30px"><b>Derrotas:</b> ${derrotas_usuario}</p>
+                    <p style="font-size:30px"><b>Empates:</b> ${empates_usuario}</p>
+                </div>
+            `;
+        }
+
+        container.style.display = 'block'; // Torna visível a div
     }
 </script>
 

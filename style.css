@@ -376,9 +376,26 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    height: 500px;
+    height: 600px;
     width: 100%;
+
+    background-image: url(imgs/banner_1);
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
+
+#p_lutador_sorteado{
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+#p_lutador_escolhido{
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+}
+
 
 .selecao{
     display: flex;
@@ -423,8 +440,17 @@ body{
 
 }
 
-#h1_vencedor{
-    
+.container_vencedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container_vencedor h2{
+    font-size: 30px;
 }
 
 
