@@ -17,6 +17,8 @@ body{
     justify-content: space-between;
     background-color: rgb(49, 127, 230);
     align-items: center;
+    position: sticky;
+    top: 0;
     padding: 17px 0;
 } 
 
@@ -458,5 +460,113 @@ body{
 /*FIM SELEÇÃO PERSONAGEM*/
 
 
-
 /*FIM MINI GAME*/
+
+
+
+/*SOBRE MIM*/
+.sobre_mim_container{
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(imgs/banner_eu.jpg);
+    background-size: cover;
+
+}
+
+#span_mim{
+    color: red;
+}
+
+.frase_eu{
+    margin-left: 200px;
+    background-color: rgb(207, 204, 204);
+    padding: 20px;
+    border-radius: 10px;
+    opacity: 70%;
+}
+
+.frase_eu h3{
+    font-size: 35px;
+    font-style: italic;
+}
+
+.sobre_mim_conquista{
+    display: flex;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.conquista_texto{
+    text-align: center;
+    width: 50%;
+}
+
+.conquista_texto h2{
+    font-size: 60px;
+}
+
+
+.conquista_texto p{
+    font-size: 30px;
+}
+
+.sobre_mim_atributos{
+    display: grid;
+    height: 80vh;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    grid-template-rows: repeat(2, auto);   /* 2 linhas */
+    gap: 20px; /* espaço entre as divs */
+    padding: 20px;
+}
+
+.atributo{
+    background-color: rgb(48, 158, 231);
+    border-radius: 15px;
+    width: 80%;
+    padding: 20px;
+}
+
+.img_titulo_atributo{
+    display: block;
+}
+
+.img_titulo_atributo img{
+    height: 50px;
+    width: 50px;
+}
+
+.div_peso {
+    height: 120vh;
+    width: 100%;
+}
+
+.div_peso img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block; /* importante para tirar espaços brancos indesejados */
+}
+
+.fim_sobre_mim{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(imgs/banner_sobre_mim_final.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 130%;
+    background-position: center;
+    height: 30vh;
+
+}
+
+.fim_sobre_mim h2{
+    font-size: 40px;
+    color: white;
+
+}
+
+/*FIM SOBRE MIM*/
