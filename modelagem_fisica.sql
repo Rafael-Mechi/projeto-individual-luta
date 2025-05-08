@@ -1,6 +1,25 @@
 create database projeto_luta;
 use projeto_luta;
 
+create table Usuario (
+	id int primary key auto_increment,
+    nome_usuario varchar(100) not null,
+    email varchar(100) not null unique,
+    senha varchar(100) not null,
+    data_criacao datetime default current_timestamp
+);
+
+create table Estatistica_usuario (
+    id int primary key auto_increment,
+    vitorias int default 0,
+    derrotas int default 0,
+    total_lutas int default 0,
+
+    fk_usuario int unique,
+
+    foreign key (fk_usuario) references Usuario(id)
+);
+
 create table Nacionalidade(
 	id int primary key auto_increment,
     nome varchar(50) not null
@@ -42,9 +61,11 @@ create table Luta (
     
     fk_lutador_1 int not null,
     fk_lutador_2 int not null,
+    fk_usuario int not null,
     
     foreign key (fk_lutador_1) references Lutador(id),
-    foreign key (fk_lutador_2) REFERENCES lutador(id)
+    foreign key (fk_lutador_2) REFERENCES lutador(id),
+    foreign key (fk_usuario) references Usuario(id)
 ) auto_increment = 1000;
 
 create table Resultado_luta (
