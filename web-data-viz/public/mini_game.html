@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
     <div class="header">
         <div class="container">
-            <a href="index.html"><img src="imgs/logo_sem_fundo_branco.png" alt="Logo"
+            <a href="indexx.html"><img src="assets/imgs/logo_sem_fundo_branco.png" alt="Logo"
                     style="height: var(--tamanho-header); width: 90px;"></a>
             <ul class="navbar">
                 <li>
-                    <a href="index.html">Início</a>
+                    <a href="indexx.html">Início</a>
                 </li>
                 <li>
                     <a href="dashboard.html">Dashboard</a>
@@ -84,10 +84,10 @@
             const lutador = select.value;
 
             if (lutador === 'alex_pereira') {
-                img.src = 'imgs/alex_pereira.png';
+                img.src = 'assets/imgs/alex_pereira.png';
                 p_lutador_escolhido.innerHTML = 'Nome: <b>Alex Pereira</b><br>Estilo de luta: Kickboxing<br><br>Vitórias:12<br>Derrotas:3<br>Empates:0<br><br>Pontuação geral: <b>1800</b>';
             } else if (lutador === 'jon_jones') {
-                img.src = 'imgs/jon_jones.jpg';
+                img.src = 'assets/imgs/jon_jones.jpg';
                 p_lutador_escolhido.innerHTML = 'Nome: <b>Jon Jones</b><br>Estilo de luta: MMA<br><br>Vitórias:28<br>Derrotas:1<br>Empates:0<br><br>Pontuação geral: <b>2200</b>';
             } else {
                 img.src = ''; // Nenhum lutador selecionado
@@ -104,12 +104,12 @@
         var valor = (aux * (max - min) + min).toFixed();
 
         if (valor == 1) {
-            img_lutador_sorteado.src = 'imgs/alex_pereira.png';
+            img_lutador_sorteado.src = 'assets/imgs/alex_pereira.png';
             p_lutador_sorteado.innerHTML = 'Nome: <b>Alex Pereira</b><br>Estilo de luta: Kickboxing<br><br>Vitórias:12<br>Derrotas:3<br>Empates:0<br><br>Pontuação geral: <b>1800</b>';
         }
 
         if (valor == 2) {
-            img_lutador_sorteado.src = 'imgs/jon_jones.jpg';
+            img_lutador_sorteado.src = 'assets/imgs/jon_jones.jpg';
             p_lutador_sorteado.innerHTML = 'Nome: <b>Jon Jones</b><br>Estilo de luta: MMA<br><br>Vitórias:28<br>Derrotas:1<br>Empates:0<br><br>Pontuação geral: <b>2200</b>';
         }
         exibirVencedor();
