@@ -15,8 +15,12 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
-var indexRouter = require("./src/routes/index");
+var indexRouter = require("./src/routes/indexx");
+
+// mantendo a cópia do original e adicionando a versão do projeto luta
 var usuarioRouter = require("./src/routes/usuarios");
+var usuarioLutaRouter = require("./src/routes/usuarioLuta");
+
 var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var aquariosRouter = require("./src/routes/aquarios");
@@ -29,7 +33,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", indexRouter);
+
+// mantendo a cópia do original e adicionando a versão do projeto luta
 app.use("/usuarios", usuarioRouter);
+app.use("/usuarios-luta", usuarioLutaRouter);
+
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);

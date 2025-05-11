@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -49,9 +49,57 @@
             <div class="div_btn_cadastrar">
                 <button onclick="cadastrar()" id="btn_cadastrar">Cadastrar</button>
             </div>
-            
+
         </div>
     </div>
 </body>
+<script>
+    function cadastrar() {
+        const nomeVar = nome_input.value;
+        const emailVar = email_input.value;
+        const senhaVar = senha_input.value;
+        const confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+        if (
+            nomeVar === "" ||
+            emailVar === "" ||
+            senhaVar === "" ||
+            confirmacaoSenhaVar === ""
+        ) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+
+        if (senhaVar !== confirmacaoSenhaVar) {
+            alert("A senha e a confirmação de senha não coincidem.");
+            return;
+        }
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            }),
+        })
+            .then((resposta) => {
+                if (resposta.ok) {
+                    alert("Cadastro realizado com sucesso!");
+                    window.location.href = "login.html";
+                } else {
+                    alert("Erro ao cadastrar. Verifique os dados e tente novamente.");
+                }
+            })
+            .catch((erro) => {
+                console.error("Erro na requisição: ", erro);
+                alert("Erro na conexão com o servidor.");
+            });
+    }
+
+</script>
 
 </html>
