@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
-body{
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100%;
+    background-color: #f0f2f5;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Questrial', sans-serif;
@@ -42,6 +50,96 @@ body{
 .header a:hover{
     opacity: 0.7;
 }
+
+
+/*CADASTRO*/
+#a_login{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    color: rgb(49, 127, 230);
+}
+
+.container_cadastro {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(banner_cadastro.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.container_cadastro h2{
+    margin-bottom: 40px;
+    font-size: 50px;
+    color: white;
+    background-color: #317fe6;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 20px;
+}
+
+.formulario {
+    background-color: white;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.campo h4 {
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 20px;
+}
+
+.campo input {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 18px;
+    transition: border 0.3s ease;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: #317fe6;
+    box-shadow: 0 0 5px rgba(49, 127, 230, 0.3);
+}
+
+.div_btn_cadastrar{
+    display: flex;
+    justify-content: center;
+}
+
+#btn_cadastrar{
+    text-decoration: none;
+    border: none;
+    align-self: center;
+    background-color: #317fe6;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+#btn_cadastrar:hover{
+    cursor: pointer;
+    opacity: 80%;
+}
+
+/*FIM CADASTRO*/
+
+
 
 
 /*PÁGINA INICIAL*/
