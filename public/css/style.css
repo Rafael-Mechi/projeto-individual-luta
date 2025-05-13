@@ -139,6 +139,56 @@ body, html {
 
 /*FIM CADASTRO E LOGIN*/
 
+/*DASHBOARD*/
+.container_kpi{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 25vh;
+    border: solid;
+    border-color: black;
+}
+
+.div_kpi{
+    height: 100%;
+    width: 15%;
+    background-color: #639EEC;
+    color: white;
+
+
+    border: solid;
+    border-color: rgb(187, 18, 18);
+}
+
+.container_graficos{
+    display: flex;
+}
+
+.container_grafico_preferencia {
+    margin-top: 20px;
+    height: 60vh;
+    width: 40%; /* ou a largura desejada */
+    display: flex;
+    justify-content: flex-start; /* <-- isso aqui alinha à esquerda */
+    align-items: center;
+
+    position: relative;
+    border: solid;
+    border-color: chocolate;
+}
+
+
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+/*FIM DASHBOARD*/
+
 
 
 
