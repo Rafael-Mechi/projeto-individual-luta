@@ -1,4 +1,4 @@
-var usuarioModel = require("../models/usuarioModelLuta");
+var usuarioModelLuta = require("../models/usuarioModelLuta");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -15,7 +15,7 @@ function autenticar(req, res) {
                     res.json({
                         id: resultadoAutenticar[0].id,
                         email: resultadoAutenticar[0].email,
-                        nome_usuario: resultadoAutenticar[0].nome_usuario
+                        nome: resultadoAutenticar[0].nome
                     });
                 } else if (resultadoAutenticar.length == 0) {
                     res.status(403).send("Email e/ou senha inválido(s)");
@@ -41,7 +41,7 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        usuarioModel.cadastrar(nome, email, senha)
+        usuarioModelLuta.cadastrar(nome, email, senha)
             .then(function (resultado) {
                 res.json(resultado);
             }).catch(function (erro) {

@@ -3,7 +3,7 @@ use projeto_luta;
 
 create table Usuario (
 	id int primary key auto_increment,
-    nome_usuario varchar(100) not null,
+    nome varchar(100) not null,
     email varchar(100) not null unique,
     senha varchar(100) not null,
     data_criacao datetime default current_timestamp
@@ -64,7 +64,7 @@ create table Luta (
     fk_usuario int not null,
     
     foreign key (fk_lutador_1) references Lutador(id),
-    foreign key (fk_lutador_2) REFERENCES lutador(id),
+    foreign key (fk_lutador_2) REFERENCES Lutador(id),
     foreign key (fk_usuario) references Usuario(id)
 ) auto_increment = 1000;
 
