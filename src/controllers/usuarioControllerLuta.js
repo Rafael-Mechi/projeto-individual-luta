@@ -9,7 +9,7 @@ function autenticar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        usuarioModel.autenticar(email, senha)
+        usuarioModelLuta.autenticar(email, senha)
             .then(function (resultadoAutenticar) {
                 if (resultadoAutenticar.length == 1) {
                     res.json({
