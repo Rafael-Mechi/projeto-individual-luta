@@ -46,6 +46,26 @@
                 <input type="password" id="ipt_confirmar_senha" placeholder="••••••">
             </div>
 
+            <div class="campo">
+                <h4>Selecione sua arte marcial favorita</h4>
+                <select name="select_arte_marcial" id="select_arte_marcial">
+                    <option value="1">Aikido</option>
+                    <option value="2">Boxe</option>
+                    <option value="3">Capoeira</option>
+                    <option value="4">Jiu-Jitsu</option>
+                    <option value="5">Judo</option>
+                    <option value="6">Karatê</option>
+                    <option value="7">Kickboxing</option>
+                    <option value="8">Kung Fu</option>
+                    <option value="9">MMA</option>
+                    <option value="10">Muay Thai</option>
+                    <option value="11">Taekwondo</option>
+                    <option value="12">Wing Chun</option>
+                    <option value="13">Wrestling</option>
+                </select>
+
+            </div>
+
             <div class="div_btn_cadastrar">
                 <button onclick="cadastrar()" id="btn_cadastrar">Cadastrar</button>
             </div>
@@ -59,12 +79,15 @@
         const emailVar = ipt_email.value;
         const senhaVar = ipt_senha.value;
         const confirmacaoSenhaVar = ipt_confirmar_senha.value;
+        const fkArtemarcial = select_arte_marcial.value;
 
         if (
             nomeVar === "" ||
             emailVar === "" ||
             senhaVar === "" ||
-            confirmacaoSenhaVar === ""
+            confirmacaoSenhaVar === "" ||
+            fkArtemarcial === ""
+
         ) {
             alert("Por favor, preencha todos os campos.");
             return;
@@ -83,7 +106,8 @@
             body: JSON.stringify({
                 nomeServer: nomeVar,
                 emailServer: emailVar,
-                senhaServer: senhaVar
+                senhaServer: senhaVar,
+                arteMarcialServer: fkArtemarcial
             }),
         })
             .then((resposta) => {

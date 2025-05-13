@@ -33,6 +33,7 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var fkArtemarcial = req.body.arteMarcialServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -41,7 +42,7 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        usuarioModelLuta.cadastrar(nome, email, senha)
+        usuarioModelLuta.cadastrar(nome, email, senha, fkArtemarcial)
             .then(function (resultado) {
                 res.json(resultado);
             }).catch(function (erro) {

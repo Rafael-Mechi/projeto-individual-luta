@@ -12,12 +12,12 @@ function autenticar(email, senha) {
     return database.executar(instrucaoSql);
 }
 
-function cadastrar(nome, email, senha) {
-    console.log("ACESSEI O USUARIO MODEL LUTA \n\n function cadastrar():", nome, email, senha);
+function cadastrar(nome, email, senha, fkArtemarcial) {
+    console.log("ACESSEI O USUARIO MODEL LUTA \n\n function cadastrar():", nome, email, senha, fkArtemarcial);
     
     var instrucaoSql = `
-        INSERT INTO usuario (nome, email, senha)
-        VALUES ('${nome}', '${email}', '${senha}');
+        INSERT INTO usuario (nome, email, senha, fkArtemarcial)
+        VALUES ('${nome}', '${email}', '${senha}', ${fkArtemarcial});
     `;
     
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
