@@ -150,7 +150,6 @@ body, html {
     text-align: center;
     justify-content: center;
     height: 700px;
-    margin-bottom: 200px;
 }
 
 .container_boasvindas h1{
@@ -240,9 +239,6 @@ body, html {
 /*FIM ORIGENS*/
 
 /*INÍCIO MODERNIDADE*/
-.container_modernidade{
-    margin-bottom: 100px;
-}
 
 .modernidade_conteudo{
     display: flex;
@@ -308,21 +304,25 @@ body, html {
     font-family: 'Questrial', sans-serif;
     text-align: center;
     justify-content: center;
-    margin-bottom: 200px;
-    background-image: url(imgs/banner_2.jpg);
     background-size: cover;
     background-position: center;
+    background-color: black;
 }
 
 .container_torneios h1{
+    color: white;
+    font-size: 50px;
+}
+
+#h1_principais_torneios{
     color: white;
 }
 
 
 .torneio_conteudo{
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-direction: row;
+    height: 100vh;
 }
 
 .torneio_conteudo img{
@@ -331,73 +331,29 @@ body, html {
     border-radius: 15px;
 }
 
-
-.torneio_conteudo p{
-    font-size: 20px;
-    padding: 30px;
-    background-color: rgb(177, 170, 170);
-    border-radius: 20px;
+.txt_torneio{
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    text-align: justify;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    margin-left: 50px;
 }
 
-.torneio_1{
+.imgs_torneios{
+    width: 100vw;
     display: flex;
     flex-direction: row;
-    width: 100%;
-    text-align: justify;
-    justify-content: space-around;
-    margin-bottom: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
-.torneio_1_img{
-    height: 500px;
-    width: 400px;
-}
-
-.torneio_1_texto{
-    font-size: 20px;
-    width: 50%;
-    text-align: justify;
-}
-
-
-.torneio_2{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    text-align: justify;
-    justify-content: space-around;
-    margin-bottom: 100px;
-}
-
-.torneio_2_img{
-    height: 500px;
-    width: 450px;
-}
-
-.torneio_2_texto{
-    font-size: 20px;
-    width: 55%;
-    text-align: justify;
-}
-
-.torneio_3{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    text-align: justify;
-    justify-content: space-around;
-    margin-bottom: 100px;
-}
-
-.torneio_3_img{
-    height: 500px;
-    width: 400px;
-}
-
-.torneio_3_texto{
-    font-size: 20px;
-    width: 50%;
-    text-align: justify;
+.imgs_torneios img{
+    height: 70%;
+    width: 25%;
 }
 
 
@@ -409,7 +365,6 @@ body, html {
     text-align: center;
     justify-content: center;
     height: 700px;
-    margin-bottom: 200px;
     background-color: aqua;
 }
 
