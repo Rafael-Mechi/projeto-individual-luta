@@ -19,6 +19,8 @@ var indexRouter = require("./src/routes/index");
 
 // mantendo a cópia do original e adicionando a versão do projeto luta
 var usuarioRouter = require("./src/routes/usuarioLuta");
+var arteMarcialRouter = require("./src/routes/arteMarcialRouter");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +31,7 @@ app.use(cors());
 app.use("/", indexRouter);
 
 app.use("/usuarios", usuarioRouter);
+app.use("/artes-marciais", arteMarcialRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
