@@ -689,3 +689,49 @@ canvas {
 }
 
 /*FIM SOBRE MIM*/
+
+/*QUIZ*/
+.container_tela_quiz{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container_questao{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    text-align: justify;
+    font-size: 25px;
+    background-color: rgb(204, 201, 201);
+    padding: 30px;
+    border-radius: 20px;
+
+    margin-top: 50px;
+    margin-bottom: 150px;
+}
+
+.div_alternativas{
+    margin-top: 30px;
+    font-size: 25px;
+}
+
+#btn_responder_quiz{
+    font-size: 25px;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    background-color: #1864C7;
+    padding: 30px;
+}
+
+#btn_responder_quiz:hover{
+    opacity: 70%;
+    cursor: pointer;
+}
+
+/*FIM QUIZ*/
+

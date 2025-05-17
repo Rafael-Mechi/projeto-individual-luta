@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="index.html"><img src="assets/imgs/logo_sem_fundo_branco.png" alt="Logo"
+                    style="height: var(--tamanho-header); width: 90px;"></a>
+            <ul class="navbar">
+                <li>
+                    <a href="index.html">Início</a>
+                </li>
+                <li>
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+                <li>
+                    <a href="sobre_mim.html">Sobre mim</a>
+                </li>
+                <li>
+                    <a href="mini_game.html">Mini Game</a>
+                </li>
+                <li>
+                    <a href="quiz.html"><b>Quiz</b></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container_tela_quiz">
+        <div class="container_questao">
+            <div class="div_enunciado">
+                <h3><b>1. Quantas faixas existem no jiu jitsu, incluindo até a preta?</b></h3>
+            </div>
+            <div class="div_alternativas">
+                <input type="radio" id="q1a" name="questao_1" value="A">
+                <label for="q1a">6 faixas</label><br>
+
+                <input type="radio" id="q1b" name="questao_1" value="B">
+                <label for="q1b">7 faixas</label><br>
+
+                <input type="radio" id="q1c" name="questao_1" value="C">
+                <label for="q1c">8 faixas</label><br>
+
+                <input type="radio" id="q1d" name="questao_1" value="D">
+                <label for="q1d">9 faixas</label><br>
+            </div>
+        </div>
+
+        <div class="container_questao">
+            <div class="div_enunciado">
+                <h3><b>2. Qual dos lutadores abaixo já foi campeão duplo no UFC?</b></h3>
+            </div>
+            <div class="div_alternativas">
+                <input type="radio" id="q2a" name="questao_2" value="A">
+                <label for="q2a">José Aldo</label><br>
+
+                <input type="radio" id="q2b" name="questao_2" value="B">
+                <label for="q2b">Amanda Nunes</label><br>
+
+                <input type="radio" id="q2c" name="questao_2" value="C">
+                <label for="q2c">Nate Diaz</label><br>
+
+                <input type="radio" id="q2d" name="questao_2" value="D">
+                <label for="q2d">Charles do Bronx</label><br>
+            </div>
+        </div>
+
+        <div class="container_questao">
+            <div class="div_enunciado">
+                <h3><b>3. Qual das artes marciais abaixo é conhecida por usar, além de socos e chutes, joelhadas e
+                        cotoveladas?</b></h3>
+            </div>
+            <div class="div_alternativas">
+                <input type="radio" id="q3a" name="questao_3" value="A">
+                <label for="q3a">Karatê</label><br>
+
+                <input type="radio" id="q3b" name="questao_3" value="B">
+                <label for="q3b">Boxe</label><br>
+
+                <input type="radio" id="q3c" name="questao_3" value="C">
+                <label for="q3c">Muay Thai</label><br>
+
+                <input type="radio" id="q3d" name="questao_3" value="D">
+                <label for="q3d">Taekwondo</label><br>
+            </div>
+        </div>
+
+        <button onclick="responder()" id="btn_responder_quiz">Responder</button>
+
+
+
+    </div>
+
+</body>
+
+</html>

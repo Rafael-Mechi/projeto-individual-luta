@@ -31,3 +31,5 @@ INSERT INTO Arte_marcial (id, nome) VALUES
 (11, 'Taekwondo'),
 (12, 'Wing Chun'),
 (13, 'Wrestling');
+
+select * from Usuario;
