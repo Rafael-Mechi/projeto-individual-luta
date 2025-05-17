@@ -17,6 +17,23 @@ create table Usuario (
     constraint fkArtemarcial foreign key (fkArtemarcial) references Arte_marcial(id)
 );
 
+create table Pergunta (
+    id int primary key auto_increment,
+    enunciado varchar(255) not null,
+    resposta_correta CHAR(1) not null
+);
+
+create table RespostaUsuario (
+    id int primary key auto_increment,
+    fkUsuario int not null,
+    fkPergunta int not null,
+    resposta_dada char(1) not null,
+    
+    foreign key (fkPergunta) references Pergunta(id),
+    foreign key (fkUsuario) references Usuario(id)
+);
+
+
 INSERT INTO Arte_marcial (id, nome) VALUES
 (1, 'Aikido'),
 (2, 'Boxe'),

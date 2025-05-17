@@ -166,16 +166,116 @@ body, html {
 }
 
 .container_grafico_preferencia {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
     height: 60vh;
-    width: 40%; /* ou a largura desejada */
+    width: 100%;
     display: flex;
-    justify-content: flex-start; /* <-- isso aqui alinha à esquerda */
+    justify-content: center;
     align-items: center;
 
+
     position: relative;
-    border: solid;
-    border-color: chocolate;
+}
+
+.container_quiz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container_graficos_quiz {
+    display: flex;
+    flex-direction: column;
+    background-color: #317fe6;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 1000px;
+    gap: 20px;
+}
+
+.container_barras_distribuicao_quiz {
+    display: flex;
+    padding: 35px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.container_grafico_barras,
+.container_grafico_pizza {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #b8dfee;
+    width: 48%;
+}
+
+.container_grafico_pizza canvas {
+    width: 100%;
+    height: 100px;
+}
+
+.container_grafico_barras canvas{
+    width: 100%;
+    height: 100px;
+}
+
+.container_linha_quiz {
+    display: flex;
+    justify-content: center;
+}
+
+.container_grafico_linha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #b8dfee;
+    padding: 10px;
+    border-radius: 20px;
+    width: 100%;
+    margin-bottom: 35px;
+    max-width: 900px;
+}
+
+.container_grafico_linha canvas {
+    width: 100%;
+    height: 350px;
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-size: 35px;
+}
+
+#div_resposta_quiz{
+    font-size: 40px;
+    background-color: #1864C7;
+    color: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-top: 50px;
+    margin-bottom: 70px;
+}
+
+#div_resposta_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    height: 100%;
+    margin-bottom: 50px;
+    width: 100px;
+}
+
+#div_resposta_img img{
+    height: 300px;
+    width: 300px;
+    border-radius: 15px;
 }
 
 
@@ -463,7 +563,7 @@ canvas {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     flex-direction: column;
     font-size: 15px;
-    position: absolute;
+    position: relative;
     width: 100%;
     color: white;
     text-align: center;

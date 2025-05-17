@@ -52,96 +52,342 @@
         </div>
 
     </div>
-    
+
     <div class="container_grafico_preferencia">
+        <h2>Preferência de artes marciais entre os usuários</h2>
         <canvas id="myChart"></canvas>
     </div>
 
+    <div class="container_quiz">
+        <div class="container_graficos_quiz">
+
+            <div class="container_barras_distribuicao_quiz">
+                <div class="container_grafico_barras">
+                    <h2>Usuários com mais acertos</h2>
+                    <canvas id="graficoTopUsuarios"></canvas>
+                </div>
+
+                <div class="container_grafico_pizza">
+                    <h2>Distribuição de alternativas marcadas</h2>
+                    <canvas id="graficoDistribuicaoAlternativas"></canvas>
+                </div>
+            </div>
+
+            <div class="container_linha_quiz">
+                <div class="container_grafico_linha">
+                    <h2>Porcentagem de acertos nas questões</h2>
+                    <canvas id="graficoPercentualQuestoes"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
     <script>
-    window.onload = () => {
-        obterDadosGraficoPreferencias();
-    };
-
-    function obterDadosGraficoPreferencias() {
-        fetch("/artes-marciais/preferencias", { cache: 'no-store' })
-            .then(response => {
-                if (response.ok) {
-                    response.json().then(resposta => {
-                        console.log("Dados recebidos: ", resposta);
-                        plotarGraficoPreferencias(resposta);
-                    });
-                } else {
-                    console.error("Erro ao obter dados: ", response.status);
-                }
-            })
-            .catch(erro => {
-                console.error("Erro na requisição: ", erro.message);
-            });
-    }
-
-    function plotarGraficoPreferencias(dados) {
-        console.log("Iniciando plotagem do gráfico...");
-
-        let labels = [];
-        let valores = [];
-
-        for (let i = 0; i < dados.length; i++) {
-            let registro = dados[i];
-            labels.push(registro.arte_marcial || "Não informado");
-            valores.push(registro.total_usuarios || 0);
-        }
-
-        console.log("Labels:", labels);
-        console.log("Dados:", valores);
-
-        const config = {
-            type: 'doughnut',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Preferência de Artes Marciais',
-                    data: valores,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                        'rgba(153, 102, 255, 0.7)',
-                        'rgba(255, 159, 64, 0.7)',
-                        'rgba(199, 199, 199, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(199, 199, 199, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    },
-                    title: {
-                        display: true,
-                        text: 'Preferência de Artes Marciais dos Usuários'
-                    }
-                }
-            }
+        
+        window.onload = () => {
+            obterDadosGraficoPreferencias();
+            obterTopUsuarios();
+            obterDistribuicaoAlternativas();
+            obterPercentualQuestoes();
         };
 
-        new Chart(
-            document.getElementById('myChart'),
-            config
-        );
-    }
-</script>
+
+        function obterDadosGraficoPreferencias() {
+            fetch("/artes-marciais/preferencias", { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(resposta => {
+                            console.log("Dados recebidos: ", resposta);
+                            plotarGraficoPreferencias(resposta);
+                        });
+                    } else {
+                        console.error("Erro ao obter dados: ", response.status);
+                    }
+                })
+                .catch(erro => {
+                    console.error("Erro na requisição: ", erro.message);
+                });
+        }
+
+        function plotarGraficoPreferencias(dados) {
+            console.log("Iniciando plotagem do gráfico...");
+
+            let labels = [];
+            let valores = [];
+
+            for (let i = 0; i < dados.length; i++) {
+                let registro = dados[i];
+                labels.push(registro.arte_marcial || "Não informado");
+                valores.push(registro.total_usuarios || 0);
+            }
+
+            console.log("Labels:", labels);
+            console.log("Dados:", valores);
+
+            const config = {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Preferência de Artes Marciais',
+                        data: valores,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(199, 199, 199, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(199, 199, 199, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true
+                        }
+                    }
+                }
+            };
+
+            new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+        }
+
+        function obterTopUsuarios() {
+            fetch("/quiz/top-usuarios", { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(dados => {
+                            console.log("Dados dos top usuários recebidos:", dados);
+                            plotarGraficoTopUsuarios(dados);
+                        });
+                    } else {
+                        console.error("Erro ao obter dados dos top usuários:", response.status);
+                    }
+                })
+                .catch(erro => {
+                    console.error("Erro na requisição dos top usuários:", erro.message);
+                });
+        }
+
+        function plotarGraficoTopUsuarios(dados) {
+            console.log("Iniciando plotagem do gráfico de top usuários...");
+
+            let nomes = [];
+            let acertos = [];
+
+            for (let i = 0; i < dados.length; i++) {
+                let registro = dados[i];
+                nomes.push(registro.usuario);
+                acertos.push(registro.total_acertos);
+            }
+
+            console.log("Nomes:", nomes);
+            console.log("Acertos:", acertos);
+
+            const config = {
+                type: 'bar',
+                data: {
+                    labels: nomes,
+                    datasets: [{
+                        label: 'Total de Acertos',
+                        data: acertos,
+                        backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Top 5 Usuários com Mais Acertos'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+            new Chart(
+                document.getElementById('graficoTopUsuarios'),
+                config
+            );
+        }
+
+
+        function obterDistribuicaoAlternativas() {
+            fetch("/quiz/distribuicao-alternativas", { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(dados => {
+                            console.log("Dados da distribuição de alternativas:", dados);
+                            plotarGraficoDistribuicaoAlternativas(dados);
+                        });
+                    } else {
+                        console.error("Erro ao obter dados de distribuição de alternativas:", response.status);
+                    }
+                })
+                .catch(erro => {
+                    console.error("Erro na requisição de distribuição de alternativas:", erro.message);
+                });
+        }
+
+        function plotarGraficoDistribuicaoAlternativas(dados) {
+            console.log("Iniciando plotagem do gráfico de distribuição de alternativas...");
+
+            let alternativas = [];
+            let totais = [];
+
+            for (let i = 0; i < dados.length; i++) {
+                let registro = dados[i];
+                alternativas.push(registro.alternativa);
+                totais.push(registro.total);
+            }
+
+            console.log("Alternativas:", alternativas);
+            console.log("Totais:", totais);
+
+            const config = {
+                type: 'pie',
+                data: {
+                    labels: alternativas,
+                    datasets: [{
+                        label: 'Distribuição de Alternativas',
+                        data: totais,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(153, 102, 255, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Alternativas Marcadas'
+                        }
+                    }
+                }
+            };
+
+            new Chart(
+                document.getElementById('graficoDistribuicaoAlternativas'),
+                config
+            );
+        }
+
+
+        function obterPercentualQuestoes() {
+            fetch("/quiz/percentual-questoes", { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(dados => {
+                            console.log("Dados do percentual de acertos por questão:", dados);
+                            plotarGraficoPercentualQuestoes(dados);
+                        });
+                    } else {
+                        console.error("Erro ao obter percentual de acertos:", response.status);
+                    }
+                })
+                .catch(erro => {
+                    console.error("Erro na requisição do percentual de acertos:", erro.message);
+                });
+        }
+
+        function plotarGraficoPercentualQuestoes(dados) {
+            console.log("Iniciando plotagem do gráfico de percentual de acertos...");
+
+            let perguntas = [];
+            let percentuais = [];
+
+            for (let i = 0; i < dados.length; i++) {
+                let registro = dados[i];
+                perguntas.push(registro.pergunta);
+                percentuais.push(registro.percentual_acerto);
+            }
+
+            console.log("Perguntas:", perguntas);
+            console.log("Percentuais:", percentuais);
+
+            const config = {
+                type: 'line',
+                data: {
+                    labels: perguntas,
+                    datasets: [{
+                        label: 'Percentual de Acertos (%)',
+                        data: percentuais,
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        backgroundColor: 'rgba(255, 159, 64, 0.5)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Porcentagem de Acertos por Questão'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            };
+
+            new Chart(
+                document.getElementById('graficoPercentualQuestoes'),
+                config
+            );
+        }
+
+    </script>
 
 </body>
 

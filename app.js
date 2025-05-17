@@ -20,6 +20,7 @@ var indexRouter = require("./src/routes/index");
 // mantendo a cópia do original e adicionando a versão do projeto luta
 var usuarioRouter = require("./src/routes/usuarioLuta");
 var arteMarcialRouter = require("./src/routes/arteMarcialRouter");
+var quizRouter = require('./src/routes/quiz');
 
 
 app.use(express.json());
@@ -32,6 +33,7 @@ app.use("/", indexRouter);
 
 app.use("/usuarios", usuarioRouter);
 app.use("/artes-marciais", arteMarcialRouter);
+app.use('/quiz', quizRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
