@@ -774,7 +774,7 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(imgs/banner_sobre_mim_final.jpg);
+    background-color: black;
     background-repeat: no-repeat;
     background-size: 100% 130%;
     background-position: center;

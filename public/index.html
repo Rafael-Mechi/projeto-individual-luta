@@ -35,7 +35,7 @@
         <h1>Boas vindas</h1>
         <div class="boasvindas_conteudo">
             <div class="boasvindas_texto">
-                <h2>Bem-vindo</h2>
+                <h2>Olá, <span id="b_usuario"></span>!</h2>
                 <p>Olá! Neste projeto individual, gostaria de contar à você um pouco sobre a arte da luta, e o quão ela é importante para mim. Vamos ver suas origens, um pouco de cada arte marcial, competições, meus lutadores favoritos e muito mais!<br><br>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit, omnis tempore nobis voluptates odio dicta voluptatem pariatur recusandae mollitia quas at alias! Alias distinctio ratione voluptatum, recusandae ad rerum ipsam.</p>
             </div>
             <div class="boasvindas_img"><img src="assets/imgs/img_bem_vindo.jpg" alt=""></div>
@@ -195,4 +195,7 @@
         </div>
     </div>
 </body>
+    <script>
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    </script>
 </html>
