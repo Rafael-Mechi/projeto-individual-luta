@@ -12,11 +12,11 @@
 <body>
     <div class="header">
         <div class="container">
-            <a href="menu.html"><img src="assets/imgs/logo_sem_fundo_branco.png" alt="Logo"
+            <a href="indexx.html"><img src="assets/imgs/logo_sem_fundo_branco.png" alt="Logo"
                     style="height: var(--tamanho-header); width: 90px;"></a>
             <ul class="navbar">
                 <li>
-                    <a href="menu.html">Início</a>
+                    <a href="index.html">Início</a>
                 </li>
                 <li>
                     <a href="dashboard.html">Dashboard</a>
@@ -34,30 +34,56 @@
         </div>
     </div>
 
+    <!-- container_minigame com os dois lutadores lado a lado -->
     <div class="container_minigame">
+
+        <!-- Lutador escolhido -->
         <div class="selecao">
-            <select name="" id="select_personagem">
-                <option value="">selecionar lutador</option>
-                <option value="alex_pereira">Alex Pereira</option>
-                <option value="jon_jones">Jon Jones</option>
+            <label for="lutador"><strong>Escolha seu Lutador</strong></label>
+            <select id="lutador">
+                <option value="">-- Selecione um lutador --</option>
+                <option value="1">Alex Pereira</option>
+                <option value="2">Jon Jones</option>
+                <option value="3">Israel Adesanya</option>
+                <option value="4">Conor McGregor</option>
+                <option value="5">Charles Oliveira</option>
+                <option value="6">Khabib Nurmagomedov</option>
+                <option value="7">Amanda Nunes</option>
+                <option value="8">Mica Galvão</option>
+                <option value="9">Gordon Ryan</option>
+                <option value="10">Roger Gracie</option>
+                <option value="11">Kayla Harrison</option>
+                <option value="12">Demetrious Johnson</option>
+                <option value="13">Reinier de Ridder</option>
             </select>
 
-            <img src="" alt="" id="lutador_escolhido">
-
+            <img id="lutador_escolhido" src="" alt="Lutador Escolhido" />
             <p id="p_lutador_escolhido"></p>
-
+            <p id="estilo_escolhido"></p>
+            <p id="pontuacao_escolhido"></p>
         </div>
 
+        <!-- Lutador sorteado -->
         <div class="selecao">
-            <button id="sortear_lutador" onclick="sortear_lutador()">Sortear Lutador</button>
+            <button onclick="sortear_lutador()">Sortear Lutador Adversário</button>
 
-            <img src="" alt="" id="img_lutador_sorteado">
-
+            <img id="img_lutador_sorteado" src="" alt="Lutador Sorteado" />
             <p id="p_lutador_sorteado"></p>
+            <p id="estilo_sorteado"></p>
+            <p id="pontuacao_sorteado"></p>
         </div>
+
     </div>
 
-    <div class="container_vencedor" id="container_vencedor"></div>
+    <!-- Placar/vencedor fica separado, abaixo da área principal -->
+    <div class="container_vencedor" id="container_vencedor" style="margin-top: 40px;">
+
+        <h2>Placar do Usuário</h2>
+        <p>Vitórias: <span id="vitorias">0</span></p>
+        <p>Derrotas: <span id="derrotas">0</span></p>
+        <p>Empates: <span id="empates">0</span></p>
+
+    </div>
 
     <div class="footer">
         <div class="autor">
@@ -75,103 +101,117 @@
 </body>
 
 <script>
-    let vitórias_usuario = 0;
-    let derrotas_usuario = 0;
-    let empates_usuario = 0;
+    var lutadores = {
+        1: { nome: "Alex Pereira", img: "/assets/imgs/lutadores/alex_pereira.png", pontuacao: 2200 },
+        2: { nome: "Jon Jones", img: "/assets/imgs/lutadores/jon_jones.jpg", pontuacao: 2450 },
+        3: { nome: "Israel Adesanya", img: "/assets/imgs/lutadores/israel_adesanya.jpg", pontuacao: 2300 },
+        4: { nome: "Conor McGregor", img: "/assets/imgs/lutadores/conor_mcgregor.jpg", pontuacao: 2100 },
+        5: { nome: "Charles Oliveira", img: "/assets/imgs/lutadores/charles_oliveira.jpg", pontuacao: 2250 },
+        6: { nome: "Khabib Nurmagomedov", img: "/assets/imgs/lutadores/khabib_nurmagomedov.jpg", pontuacao: 2400 },
+        7: { nome: "Amanda Nunes", img: "/assets/imgs/lutadores/amanda_nunes.jpg", pontuacao: 2150 },
+        8: { nome: "Mica Galvão", img: "/assets/imgs/lutadores/mica_galvao.jpg", pontuacao: 1900 },
+        9: { nome: "Gordon Ryan", img: "/assets/imgs/lutadores/gordon_ryan.jpg", pontuacao: 2000 },
+        10: { nome: "Roger Gracie", img: "/assets/imgs/lutadores/roger_gracie.jpg", pontuacao: 1950 },
+        11: { nome: "Kayla Harrison", img: "/assets/imgs/lutadores/kayla_harrison.jpg", pontuacao: 1850 },
+        12: { nome: "Demetrious Johnson", img: "/assets/imgs/lutadores/demetrious_johnson.jpg", pontuacao: 2050 },
+        13: { nome: "Reinier de Ridder", img: "/assets/imgs/lutadores/reinier_de_ridder.jpg", pontuacao: 1750 }
+    };
 
-    function selecionar_lutador() {
-        const select = document.getElementById('select_personagem');
-        const img = document.getElementById('lutador_escolhido');
 
-        select.addEventListener('change', () => {
-            const lutador = select.value;
 
-            if (lutador === 'alex_pereira') {
-                img.src = 'assets/imgs/alex_pereira.png';
-                p_lutador_escolhido.innerHTML = 'Nome: <b>Alex Pereira</b><br>Estilo de luta: Kickboxing<br><br>Vitórias:12<br>Derrotas:3<br>Empates:0<br><br>Pontuação geral: <b>1800</b>';
-            } else if (lutador === 'jon_jones') {
-                img.src = 'assets/imgs/jon_jones.jpg';
-                p_lutador_escolhido.innerHTML = 'Nome: <b>Jon Jones</b><br>Estilo de luta: MMA<br><br>Vitórias:28<br>Derrotas:1<br>Empates:0<br><br>Pontuação geral: <b>2200</b>';
-            } else {
-                img.src = ''; // Nenhum lutador selecionado
-            }
-        });
-    }
+    var selectLutador = document.getElementById("lutador");
+    var imgEscolhido = document.getElementById("lutador_escolhido");
+    var pEscolhido = document.getElementById("p_lutador_escolhido");
 
-    window.addEventListener('DOMContentLoaded', selecionar_lutador);
+    var imgSorteado = document.getElementById("img_lutador_sorteado");
+    var pSorteado = document.getElementById("p_lutador_sorteado");
+
+    selectLutador.addEventListener("change", function () {
+        var id = this.value;
+
+        if (id && lutadores[id]) {
+            imgEscolhido.src = lutadores[id].img;
+            imgEscolhido.alt = lutadores[id].nome;
+            pEscolhido.textContent = lutadores[id].nome;
+        } else {
+            imgEscolhido.src = "";
+            imgEscolhido.alt = "";
+            pEscolhido.textContent = "";
+        }
+    });
 
     function sortear_lutador() {
         var min = 1;
-        var max = 2;
+        var max = 13;
         var aux = Math.random();
-        var valor = (aux * (max - min) + min).toFixed();
+        var valor = Math.floor(aux * (max - min + 1)) + min;
 
-        if (valor == 1) {
-            img_lutador_sorteado.src = 'assets/imgs/alex_pereira.png';
-            p_lutador_sorteado.innerHTML = 'Nome: <b>Alex Pereira</b><br>Estilo de luta: Kickboxing<br><br>Vitórias:12<br>Derrotas:3<br>Empates:0<br><br>Pontuação geral: <b>1800</b>';
+        var sorteado = lutadores[valor];
+
+        if (!sorteado) {
+            alert("Erro ao sortear lutador. Tente novamente.");
+            return;
         }
 
-        if (valor == 2) {
-            img_lutador_sorteado.src = 'assets/imgs/jon_jones.jpg';
-            p_lutador_sorteado.innerHTML = 'Nome: <b>Jon Jones</b><br>Estilo de luta: MMA<br><br>Vitórias:28<br>Derrotas:1<br>Empates:0<br><br>Pontuação geral: <b>2200</b>';
+        imgSorteado.src = sorteado.img;
+        imgSorteado.alt = sorteado.nome;
+        pSorteado.innerHTML = `${sorteado.nome}<br>Pontuação: ${sorteado.pontuacao}`;
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        if (!idUsuario) {
+            alert("Usuário não logado.");
+            return;
         }
-        exibirVencedor();
+
+        var idLutadorEscolhido = selectLutador.value;
+
+        if (!idLutadorEscolhido) {
+            alert("Selecione um lutador antes de sortear.");
+            return;
+        }
+
+        var escolhido = lutadores[idLutadorEscolhido];
+        imgEscolhido.src = escolhido.img;
+        imgEscolhido.alt = escolhido.nome;
+        pEscolhido.innerHTML = `${escolhido.nome}<br>Pontuação: ${escolhido.pontuacao}`;
+
+        let resultado = "empate";
+        if (escolhido.pontuacao > sorteado.pontuacao) {
+            resultado = "vitoria";
+        } else if (escolhido.pontuacao < sorteado.pontuacao) {
+            resultado = "derrota";
+        }
+
+        const divResultado = document.getElementById("container_vencedor");
+        divResultado.innerHTML = `<h2>Resultado: ${resultado}</h2>`;
+
+        fetch("/minigame/salvar_duelo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                idLutadorEscolhido: idLutadorEscolhido,
+                idLutadorSorteado: valor,
+                resultado: resultado
+            })
+        })
+
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    console.log("Duelo salvo com sucesso!");
+                } else {
+                    console.error("Erro ao salvar duelo.");
+                }
+            })
+            .catch(function (erro) {
+                console.error("Erro na requisição: ", erro);
+            });
     }
 
-    function exibirVencedor() {
-        const escolhido = select_personagem.value;
-        const container = document.getElementById('container_vencedor');
-
-        // Verifica se foi feito um sorteio e uma escolha
-        if (!escolhido || !img_lutador_sorteado.src) {
-            return; // Sai da função se faltar info
-        }
-
-        // Pontuações fictícias para comparar
-        const pontuacoes = {
-            alex_pereira: 1800,
-            jon_jones: 2200
-        };
-
-        // Define quem ganhou
-        let vencedor = '';
-        let pontuacao_vencedor = 0;
-        let imagem_vencedor = '';
-
-        const sorteado = img_lutador_sorteado.src.includes('alex_pereira') ? 'alex_pereira' : 'jon_jones';
-
-        if (pontuacoes[escolhido] > pontuacoes[sorteado]) {
-            vencedor = escolhido;
-            vitórias_usuario++;
-        } else if (pontuacoes[sorteado] > pontuacoes[escolhido]) {
-            vencedor = sorteado;
-            derrotas_usuario++;
-        } else {
-            vencedor = 'empate';
-            empates_usuario++;
-        }
-
-        if (vencedor === 'empate') {
-            container.innerHTML = `<h2>Empate!</h2>`;
-        } else {
-            imagem_vencedor = vencedor === 'alex_pereira' ? 'imgs/alex_pereira.png' : 'imgs/jon_jones.jpg';
-            pontuacao_vencedor = pontuacoes[vencedor];
-
-            container.innerHTML = `
-                <h2 style="font-size:40px">Vencedor: ${vencedor === 'alex_pereira' ? 'Alex Pereira' : 'Jon Jones'}</h2>
-                <img src="${imagem_vencedor}" style="height: 250px;">
-                <p style="font-size:30px"><b>Pontuação:</b> ${pontuacao_vencedor}</p>
-                <div>
-                    <h3 style="font-size:35px">Status do Usuário:</h3>
-                    <p style="font-size:30px"><b>Vitórias:</b> ${vitórias_usuario}</p>
-                    <p style="font-size:30px"><b>Derrotas:</b> ${derrotas_usuario}</p>
-                    <p style="font-size:30px"><b>Empates:</b> ${empates_usuario}</p>
-                </div>
-            `;
-        }
-
-        container.style.display = 'block'; // Torna visível a div
-    }
 </script>
+
 
 </html>

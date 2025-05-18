@@ -17,16 +17,15 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 
-// mantendo a cópia do original e adicionando a versão do projeto luta
 var usuarioRouter = require("./src/routes/usuarioLuta");
 var arteMarcialRouter = require("./src/routes/arteMarcialRouter");
 var quizRouter = require('./src/routes/quiz');
+var miniGameRouter = require('./src/routes/miniGameRouter');
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(cors());
 
 app.use("/", indexRouter);
@@ -34,6 +33,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/artes-marciais", arteMarcialRouter);
 app.use('/quiz', quizRouter);
+app.use('/minigame', miniGameRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

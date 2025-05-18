@@ -2,7 +2,7 @@ var quizModel = require("../models/quizModel");
 
 function responder(req, res) {
     var idUsuario = req.body.idUsuarioServer;
-    var respostas = req.body.respostasServer; // array [{idPergunta, resposta}, ...]
+    var respostas = req.body.respostasServer;
 
     if (idUsuario == undefined) {
         res.status(400).send("O ID do usuário está undefined!");
@@ -14,7 +14,6 @@ function responder(req, res) {
         return;
     }
 
-    // Vamos armazenar as promessas para todas inserções
     let promessas = [];
 
     for (let i = 0; i < respostas.length; i++) {
@@ -39,7 +38,7 @@ function responder(req, res) {
             res.status(500).json(erro.sqlMessage);
         });
 }
-// Gráfico 1: Top 5 usuários com mais acertos
+
 function topUsuarios(req, res) {
     quizModel.topUsuariosMaisAcertos()
         .then(resultado => {
@@ -55,7 +54,6 @@ function topUsuarios(req, res) {
         });
 }
 
-// Gráfico 2: Distribuição de alternativas marcadas
 function distribuicao(req, res) {
     quizModel.distribuicaoAlternativas()
         .then(resultado => {
@@ -71,7 +69,6 @@ function distribuicao(req, res) {
         });
 }
 
-// Gráfico 3: Porcentagem de acertos por questão
 function percentualQuestoes(req, res) {
     quizModel.percentualAcertosQuestoes()
         .then(resultado => {
