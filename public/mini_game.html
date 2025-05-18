@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mini game</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -34,10 +34,8 @@
         </div>
     </div>
 
-    <!-- container_minigame com os dois lutadores lado a lado -->
     <div class="container_minigame">
 
-        <!-- Lutador escolhido -->
         <div class="selecao">
             <label for="lutador"><strong>Escolha seu Lutador</strong></label>
             <select id="lutador">
@@ -57,13 +55,12 @@
                 <option value="13">Reinier de Ridder</option>
             </select>
 
-            <img id="lutador_escolhido" src="" alt="Lutador Escolhido" />
+            <img id="lutador_escolhido" src=""/>
             <p id="p_lutador_escolhido"></p>
             <p id="estilo_escolhido"></p>
             <p id="pontuacao_escolhido"></p>
         </div>
 
-        <!-- Lutador sorteado -->
         <div class="selecao">
             <button onclick="sortear_lutador()">Sortear Lutador Adversário</button>
 
@@ -75,7 +72,6 @@
 
     </div>
 
-    <!-- Placar/vencedor fica separado, abaixo da área principal -->
     <div class="container_vencedor" id="container_vencedor" style="margin-top: 40px;">
 
         <h2>Placar do Usuário</h2>
@@ -117,6 +113,9 @@
         13: { nome: "Reinier de Ridder", img: "/assets/imgs/lutadores/reinier_de_ridder.jpg", pontuacao: 1750 }
     };
 
+    var qtdVitorias = 0;
+    var qtdDerrotas = 0;
+    var qtdEmpates = 0;
 
 
     var selectLutador = document.getElementById("lutador");
@@ -179,12 +178,15 @@
         let resultado = "empate";
         if (escolhido.pontuacao > sorteado.pontuacao) {
             resultado = "vitoria";
+            qtdVitorias++
+
         } else if (escolhido.pontuacao < sorteado.pontuacao) {
             resultado = "derrota";
+            qtdDerrotas++;
         }
 
         const divResultado = document.getElementById("container_vencedor");
-        divResultado.innerHTML = `<h2>Resultado: ${resultado}</h2>`;
+        divResultado.innerHTML = `<h2>Resultado: ${resultado}</h2><br><h3>Vitórias: ${qtdVitorias}</h3><br><h3>Derrotas: ${qtdDerrotas}</h3><br><h3>Empates: ${qtdEmpates}</h3>`;
 
         fetch("/minigame/salvar_duelo", {
             method: "POST",

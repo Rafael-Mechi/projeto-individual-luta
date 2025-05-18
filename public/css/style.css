@@ -560,6 +560,85 @@ canvas {
     display: block;
 }
 
+.container_mini_game{
+    display: flex;
+    justify-content: center;
+}
+
+.container_graficos_mini_game {
+    display: flex;
+    flex-direction: column;
+    background-color: #317fe6;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 1000px;
+    gap: 20px;
+}
+
+.container_barras_distribuicao_mini_game {
+    display: flex;
+    justify-content: center;
+    padding: 35px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.container_grafico_barras_mini_game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #b8dfee;
+    width: 48%;
+}
+
+.container_grafico_pizza_mini_game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #b8dfee;
+    width: 48%;
+}
+
+.container_grafico_barras_mini_game canvas,
+.container_grafico_pizza_mini_game canvas {
+    width: 100%;
+    height: 200px;
+}
+
+.container_linha_mini_game {
+    display: flex;
+    justify-content: center;
+}
+
+.container_grafico_linha_mini_game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #b8dfee;
+    padding: 10px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 35px;
+}
+
+.container_grafico_linha_mini_game canvas {
+    width: 100%;
+    height: 350px;
+}
+
+.container_grafico_barras_mini_game h2,
+.container_grafico_pizza_mini_game h2,
+.container_grafico_linha_mini_game h2 {
+    margin-bottom: 15px;
+    color: #0b2545;
+    font-weight: 700;
+}
 
 /*FIM DASHBOARD*/
 
@@ -875,7 +954,7 @@ canvas {
 .container_minigame {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     height: 600px;
     width: 100%;
     background-size: 100%;

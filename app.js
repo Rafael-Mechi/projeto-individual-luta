@@ -33,7 +33,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/artes-marciais", arteMarcialRouter);
 app.use('/quiz', quizRouter);
-app.use('/minigame', miniGameRouter);
+app.use('/mini-game', miniGameRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

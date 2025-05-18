@@ -84,15 +84,39 @@
     </div>
 
 
+    <div class="container_mini_game">
+        <div class="container_graficos_mini_game">
 
+            <div class="container_barras_distribuicao_mini_game">
+                <div class="container_grafico_barras_mini_game">
+                    <h2>Taxa de Vitórias entre Usuários</h2>
+                    <canvas id="graficoTaxaVitorias"></canvas>
+                </div>
 
+                <div class="container_grafico_pizza_mini_game">
+                    <h2>Distribuição dos Resultados</h2>
+                    <canvas id="graficoDistribuicaoResultados"></canvas>
+                </div>
+            </div>
+
+            <div class="container_barras_distribuicao_mini_game">
+                <div class="container_grafico_barras_mini_game">
+                    <h2>Lutadores Mais Escolhidos</h2>
+                    <canvas id="graficoLutadoresEscolhidos"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <script>
-        
         window.onload = () => {
             obterDadosGraficoPreferencias();
             obterTopUsuarios();
             obterDistribuicaoAlternativas();
             obterPercentualQuestoes();
+            obterDistribuicaoResultados();
+            obterTaxaVitorias();
+            obterLutadoresMaisEscolhidos();
         };
 
 
@@ -114,7 +138,7 @@
         }
 
         function plotarGraficoPreferencias(dados) {
-            console.log("Iniciando plotagem do gráfico...");
+            console.log("Iniciando plotagem do gráfico de preferências...");
 
             let labels = [];
             let valores = [];
@@ -386,6 +410,212 @@
                 config
             );
         }
+
+        function obterDistribuicaoResultados() {
+            fetch("/mini-game/distribuicao-resultados", { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(dados => {
+                            console.log("Dados da distribuição de resultados:", dados);
+                            plotarGraficoDistribuicaoResultados(dados);
+                        });
+                    } else {
+                        console.error("Erro ao obter dados:", response.status);
+                    }
+                })
+                .catch(erro => {
+                    console.error("Erro na requisição:", erro.message);
+                });
+        }
+
+        function plotarGraficoDistribuicaoResultados(dados) {
+            console.log("Iniciando plotagem do gráfico de distribuição de resultados...");
+
+            let labels = [];
+            let valores = [];
+
+            for (let i = 0; i < dados.length; i++) {
+                let registro = dados[i];
+                labels.push(registro.resultado || "Indefinido");
+                valores.push(registro.total || 0);
+            }
+
+            console.log("Labels:", labels);
+            console.log("Valores:", valores);
+
+            const config = {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Distribuição de Resultados',
+                        data: valores,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(255, 206, 86, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribuição dos Resultados'
+                        }
+                    }
+                }
+            };
+
+            new Chart(
+                document.getElementById('graficoDistribuicaoResultados'),
+                config
+            );
+        }
+
+
+        function obterTaxaVitorias() {
+            fetch("/mini-game/taxa-vitorias-usuarios", { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(dados => {
+                            console.log("Dados da taxa de vitórias:", dados);
+                            plotarGraficoTaxaVitorias(dados);
+                        });
+                    } else {
+                        console.error("Erro ao obter dados:", response.status);
+                    }
+                })
+                .catch(erro => {
+                    console.error("Erro na requisição:", erro.message);
+                });
+        }
+
+
+        function plotarGraficoTaxaVitorias(dados) {
+            let labels = [];
+            let valores = [];
+
+            for (let i = 0; i < dados.length; i++) {
+                labels.push(dados[i].usuario || "Usuário desconhecido");
+                valores.push(dados[i].taxa_vitoria || 0);
+            }
+
+            const ctx = document.getElementById('graficoTaxaVitorias').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Taxa de Vitórias (%)',
+                        data: valores,
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function (value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Taxa de Vitórias entre Usuários'
+                        }
+                    }
+                }
+            });
+        }
+
+        function obterLutadoresMaisEscolhidos() {
+            fetch("/mini-game/lutadores-mais-escolhidos", { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(dados => {
+                            console.log("Dados dos lutadores mais escolhidos:", dados);
+                            plotarGraficoLutadoresMaisEscolhidos(dados);
+                        });
+                    } else {
+                        console.error("Erro ao obter dados:", response.status);
+                    }
+                })
+                .catch(erro => {
+                    console.error("Erro na requisição:", erro.message);
+                });
+        }
+
+        function plotarGraficoLutadoresMaisEscolhidos(dados) {
+            let labels = [];
+            let valores = [];
+
+            for (let i = 0; i < dados.length; i++) {
+                labels.push(dados[i].nome || "Lutador desconhecido");
+                valores.push(dados[i].total_escolhas || 0);
+            }
+
+            const ctx = document.getElementById('graficoLutadoresEscolhidos').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Número de Escolhas',
+                        data: valores,
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Lutadores Mais Escolhidos'
+                        }
+                    }
+                }
+            });
+        }
+
+
+
 
     </script>
 

@@ -1,6 +1,5 @@
 var database = require("../database/config");
 
-// Registrar resposta de um usuário
 function registrarResposta(idUsuario, idPergunta, respostaDada) {
     var instrucao = `
         INSERT INTO RespostaUsuario (fkUsuario, fkPergunta, resposta_dada)
@@ -10,7 +9,6 @@ function registrarResposta(idUsuario, idPergunta, respostaDada) {
     return database.executar(instrucao);
 }
 
-// 1. Top 5 usuários com mais acertos
 function topUsuariosMaisAcertos() {
     var instrucaoSql = `
         SELECT u.nome AS usuario, COUNT(*) AS total_acertos
@@ -26,7 +24,6 @@ function topUsuariosMaisAcertos() {
     return database.executar(instrucaoSql);
 }
 
-// 2. Distribuição de alternativas marcadas
 function distribuicaoAlternativas() {
     var instrucaoSql = `
         SELECT resposta_dada AS alternativa, COUNT(*) AS total
@@ -37,7 +34,6 @@ function distribuicaoAlternativas() {
     return database.executar(instrucaoSql);
 }
 
-// 3. Porcentagem de acertos por questão
 function percentualAcertosQuestoes() {
     var instrucaoSql = `
         SELECT 
