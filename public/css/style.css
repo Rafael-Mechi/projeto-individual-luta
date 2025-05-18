@@ -61,7 +61,7 @@ html {
     align-items: center;
     height: 100vh;
     width: 100%;
-    background-color: #639EEC;
+    margin: 0;
 }
 
 .index_texto_bem_vindo {
@@ -120,7 +120,7 @@ html {
 }
 
 .index_mini_game_titulo h1 {
-  font-size: 36px;
+  font-size: 40px;
   margin-bottom: 40px;
 }
 
@@ -136,12 +136,12 @@ html {
 }
 
 .index_mini_game_texto h2 {
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: 16px;
 }
 
 .index_mini_game_texto p {
-  font-size: 18px;
+  font-size: 25px;
 }
 
 .index_mini_game_img {
@@ -155,6 +155,173 @@ html {
   height: 400px;
   border-radius: 16px;
 }
+
+.index_quiz {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 60px;
+  padding: 60px 80px;
+  background-color: #121212;
+  color: white;
+}
+
+.index_quiz_conteudo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60vh;
+}
+
+.index_quiz_img,
+.index_quiz_txt {
+  width: 50%;
+}
+
+.index_quiz_img img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.index_quiz_txt h1 {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.index_quiz_txt p {
+  font-size: 20px;
+}
+
+/* Seção das estatísticas: 75/25 */
+.index_quiz {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 100px;
+  background-color: #121212;
+  color: white;
+  gap: 80px;
+}
+
+/* Quiz - 50% imagem / 50% texto */
+.index_quiz_conteudo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.index_quiz_img {
+  width: 50%;
+}
+
+.index_quiz_img img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.index_quiz_txt {
+  width: 50%;
+  padding-left: 40px;
+}
+
+.index_quiz_txt h1 {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.index_quiz_txt p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+
+/* Estatísticas - 75% imagem / 25% texto */
+.index_quiz_estatisticas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.index_estatisticas_img {
+  width: 60%;
+}
+
+.index_estatisticas_img img {
+  width: 100%;
+  height: 1000px;
+  border-radius: 12px;
+}
+
+.index_estatisticas_txt {
+  background-color: #5f666d;
+  padding: 30px;
+  border-radius: 20px;
+  width: 25%;
+}
+
+.index_estatisticas_txt h2 {
+  font-size: 40px;
+}
+
+.index_estatisticas_txt p {
+  font-size: 25px;
+}
+
+.index_fim {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #dad5d5;
+}
+
+.index_fim_textinho_botao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px;
+  background-color: #639EEC;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  max-width: 700px;
+}
+
+.index_fim_textinho h1 {
+  font-size: 90px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.index_fim_textinho h2 {
+  font-size: 40px;
+  color: #f0f0f0;
+}
+
+.index_fim_textinho u {
+  text-decoration: underline;
+  color: #002a77;
+  font-weight: bold;
+}
+
+.index_fim_botao button {
+  border: none;
+  font-size: 35px;
+  background-color: #1864C7;
+  color: white;
+  padding: 16px 40px;
+  border-radius: 12px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.index_fim_botao button:hover {
+  background-color: #124ea0;
+}
+
+
 
 /*FIM INDEX*/
 

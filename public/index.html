@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -73,15 +74,71 @@
 
             <div class="index_mini_game_texto">
                 <h2>Lutador x Lutador</h2>
-                <p>Participe de duelos! Escolha seu lutador, desafie o destino e enfrente adversários sorteados. Será que você tem o que é preciso para vencer cada combate?</p>
+                <p>Participe de duelos! Escolha seu lutador, desafie o destino e enfrente adversários sorteados. Será
+                    que você tem o que é preciso para vencer cada combate?</p>
             </div>
 
             <div class="index_mini_game_img">
-                <img src="assets/imgs/duelo.jpg"/>
+                <img src="assets/imgs/duelo.jpg" />
             </div>
         </div>
     </div>
 
+    <div class="index_quiz">
+        <div class="index_quiz_conteudo">
+            <div class="index_quiz_img">
+                <img src="assets/imgs/banner_quiz.jpg">
+            </div>
+            <div class="index_quiz_txt">
+                <h1>Faça o quiz!</h1>
+                <p>Veja seus conhecimentos gerais sobre artes marciais e veja qual a reação final</p>
+            </div>
+        </div>
+
+        <div class="index_quiz_estatisticas">
+            <div class="index_estatisticas_img">
+                <img src="assets/imgs/graficos.jpg">
+            </div>
+            <div class="index_estatisticas_txt">
+                <h2>Compare com outros jogadores</h2>
+                <p>Veja as estatísticas dos outros jogadores e busque o cinturão!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="index_fim">
+        <div class="index_fim_textinho_botao">
+            <div class="index_fim_textinho">
+                <h1>E muito mais!</h1>
+                <h2>Gostou? Tá esperando o quê? Cadastre-se. <u>É grátis!</u></h2>
+            </div>
+            <div class="index_fim_botao">
+                <button onclick="irParaTelaDeCadastro()">Cadastre-se</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="autor">
+            <h2>Criado por Rafael Mechi de Oliveira - 04251039 &#174</h2>
+        </div>
+        <div class="redes_sociais">
+            <a href="https://github.com/Rafael-Mechi" target="_blank">
+                <i class="fab fa-github" style="font-size:50px; color: black;"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/seu-perfil" target="_blank">
+                <i class="fab fa-linkedin icone-linkedin" style="font-size:50px; color: black; margin-left: 10px;"></i>
+            </a>
+        </div>
+    </div>
+
+
 </body>
+<script>
+    function irParaTelaDeCadastro() {
+        window.location.href = "cadastro_luta.html";
+    }
+</script>
 
 </html>
