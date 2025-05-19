@@ -188,7 +188,7 @@
         const divResultado = document.getElementById("container_vencedor");
         divResultado.innerHTML = `<h2>Resultado: ${resultado}</h2><br><h3>Vitórias: ${qtdVitorias}</h3><br><h3>Derrotas: ${qtdDerrotas}</h3><br><h3>Empates: ${qtdEmpates}</h3>`;
 
-        fetch("/minigame/salvar_duelo", {
+        fetch("/mini-game/salvar_duelo", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

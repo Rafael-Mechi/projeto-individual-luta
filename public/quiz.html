@@ -247,96 +247,84 @@
     </div>
 </body>
 <script>
-    var lutadores = {
-        1: { nome: "Alex Pereira", img: "/assets/imgs/lutadores/alex_pereira.png", pontuacao: 2200 },
-        2: { nome: "Jon Jones", img: "/assets/imgs/lutadores/jon_jones.jpg", pontuacao: 2450 },
-        3: { nome: "Israel Adesanya", img: "/assets/imgs/lutadores/israel_adesanya.jpg", pontuacao: 2300 },
-        4: { nome: "Conor McGregor", img: "/assets/imgs/lutadores/conor_mcgregor.jpg", pontuacao: 2100 },
-        5: { nome: "Charles Oliveira", img: "/assets/imgs/lutadores/charles_oliveira.jpg", pontuacao: 2250 },
-        6: { nome: "Khabib Nurmagomedov", img: "/assets/imgs/lutadores/khabib_nurmagomedov.jpg", pontuacao: 2400 },
-        7: { nome: "Amanda Nunes", img: "/assets/imgs/lutadores/amanda_nunes.jpg", pontuacao: 2150 },
-        8: { nome: "Mica Galvão", img: "/assets/imgs/lutadores/mica_galvao.jpg", pontuacao: 1900 },
-        9: { nome: "Gordon Ryan", img: "/assets/imgs/lutadores/gordon_ryan.jpg", pontuacao: 2000 },
-        10: { nome: "Roger Gracie", img: "/assets/imgs/lutadores/roger_gracie.jpg", pontuacao: 1950 },
-        11: { nome: "Kayla Harrison", img: "/assets/imgs/lutadores/kayla_harrison.jpg", pontuacao: 1850 },
-        12: { nome: "Demetrious Johnson", img: "/assets/imgs/lutadores/demetrious_johnson.jpg", pontuacao: 2050 },
-        13: { nome: "Reinier de Ridder", img: "/assets/imgs/lutadores/reinier_de_ridder.jpg", pontuacao: 1750 }
-    };
-
-    var selectLutador = document.getElementById("lutador");
-    var imgEscolhido = document.getElementById("lutador_escolhido");
-    var pEscolhido = document.getElementById("p_lutador_escolhido");
-
-    var imgSorteado = document.getElementById("img_lutador_sorteado");
-    var pSorteado = document.getElementById("p_lutador_sorteado");
-
-    selectLutador.addEventListener("change", function () {
-        var id = this.value;
-
-        if (id && lutadores[id]) {
-            imgEscolhido.src = lutadores[id].img;
-            imgEscolhido.alt = lutadores[id].nome;
-            pEscolhido.textContent = `${lutadores[id].nome} - Pontuação: ${lutadores[id].pontuacao}`;
-        } else {
-            imgEscolhido.src = "";
-            imgEscolhido.alt = "";
-            pEscolhido.textContent = "";
-        }
-    });
-
-    function sortear_lutador() {
-        var min = 0;
-        var max = 5;
-        var aux = Math.random();
-        var valorDecimal = (aux * (max - min) + min).toFixed(1);
-
-        // Sorteio do ID do lutador inteiro entre 1 e 13
-        var minId = 1;
-        var maxId = 13;
-        var valorId = Math.floor(Math.random() * (maxId - minId + 1)) + minId;
-
-        var sorteado = lutadores[valorId];
-
-        if (!sorteado) {
-            alert("Erro ao sortear lutador. Tente novamente.");
-            return;
-        }
-
-        imgSorteado.src = sorteado.img;
-        imgSorteado.alt = sorteado.nome;
-        pSorteado.textContent = `${sorteado.nome} - Pontuação: ${sorteado.pontuacao}`;
-
-        var idUsuario = sessionStorage.ID_USUARIO;
+    function responder() {
+        const idUsuario = sessionStorage.ID_USUARIO;
 
         if (!idUsuario) {
             alert("Usuário não logado.");
             return;
         }
 
-        var idLutadorEscolhido = selectLutador.value;
+        const respostas = [];
+        let certas = 0;
+        let erradas = 0;
+        const respostasCorretas = {
+            1: "C", // 8 faixas
+            2: "B", // Amanda Nunes
+            3: "C", // Muay Thai
+            4: "D", // Judô
+            5: "A", // Tailândia
+            6: "C", // McGregor x Khabib
+            7: "B", // Boxe
+            8: "B", // Ryu
+            9: "D", // Direto
+            10: "A" // Dragon Ball
+        };
 
-        if (!idLutadorEscolhido) {
-            alert("Selecione um lutador antes de sortear.");
-            return;
+        for (let i = 1; i <= 10; i++) {
+            const resposta = document.querySelector(`input[name="questao_${i}"]:checked`);
+            if (!resposta) {
+                alert(`Por favor, responda todas as perguntas.`);
+                return;
+            }
+
+            respostas.push({ idPergunta: i, resposta: resposta.value });
+
+            if (resposta.value === respostasCorretas[i]) {
+                certas++;
+            } else {
+                erradas++;
+            }
         }
 
-        fetch("/miniGame/salvar_duelo", {
+        fetch("/quiz/responder", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                idUsuario: idUsuario,
-                idLutadorEscolhido: idLutadorEscolhido,
-                idLutadorSorteado: valorId,
-                valorDecimal: valorDecimal // se quiser enviar essa info também
+                idUsuarioServer: idUsuario,
+                respostasServer: respostas
             })
         })
             .then(resposta => {
                 if (resposta.ok) {
-                    alert("Duelo salvo com sucesso!");
+                    const porcentagem = ((certas / 10) * 100).toFixed(2);
+
+                    div_resposta_quiz.innerHTML = `
+                    <p><b>Acertos:</b> ${certas}</p><br>
+                    <p><b>Erros:</b> ${erradas}</p><br>
+                    <p><b>Porcentagem de acertos:</b> ${porcentagem}%</p>
+                `;
+
+                    if (certas == 0) {
+                        div_resposta_img.innerHTML = `<img src="/css/mh_jr.jpeg">`;
+                    }
+
+                    else if (certas >= 1 && certas <= 5) {
+                        div_resposta_img.innerHTML = `<img src="/css/yamcha.png">`;
+                    }
+
+                    else if (certas >= 6 && certas <= 8) {
+                        div_resposta_img.innerHTML = `<img src="/css/naruto.jpeg">`;
+                    }
+
+                    else if (certas >= 9) {
+                        div_resposta_img.innerHTML = `<img src="/css/muito_feliz.jpg">`;
+                    }
+
                 } else {
-                    alert("Erro ao salvar duelo.");
+                    alert("Erro ao enviar respostas.");
                 }
             })
             .catch(erro => {

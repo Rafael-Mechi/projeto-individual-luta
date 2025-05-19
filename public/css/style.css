@@ -579,7 +579,6 @@ canvas {
     display: flex;
     justify-content: center;
     padding: 35px;
-    justify-content: space-between;
     align-items: center;
     gap: 20px;
 }
@@ -591,7 +590,7 @@ canvas {
     padding: 10px;
     border-radius: 20px;
     background-color: #b8dfee;
-    width: 48%;
+    width: 50%;
 }
 
 .container_grafico_pizza_mini_game {

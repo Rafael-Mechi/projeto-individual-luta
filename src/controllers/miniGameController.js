@@ -48,10 +48,20 @@ function graficoLutadoresMaisEscolhidos(req, res) {
         });
 }
 
+function graficoCombinacoesLutadores(req, res) {
+    miniGameModel.combinacoesLutadoresMaisFrequentes()
+        .then(resultado => res.status(200).json(resultado))
+        .catch(erro => {
+            console.log("Erro ao obter combinações de lutadores: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 
 module.exports = {
     salvarDuelo,
     graficoTaxaVitorias,
     graficoDistribuicaoResultados,
+    graficoCombinacoesLutadores,
     graficoLutadoresMaisEscolhidos
 };
