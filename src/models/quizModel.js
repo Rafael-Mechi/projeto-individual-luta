@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function registrarResposta(idUsuario, idPergunta, respostaDada) {
     var instrucao = `
-        INSERT INTO RespostaUsuario (fkUsuario, fkPergunta, resposta_dada)
+        INSERT INTO respostaUsuario (fkUsuario, fkPergunta, resposta_dada)
         VALUES (${idUsuario}, ${idPergunta}, UPPER('${respostaDada}'));
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -12,9 +12,9 @@ function registrarResposta(idUsuario, idPergunta, respostaDada) {
 function topUsuariosMaisAcertos() {
     var instrucaoSql = `
         SELECT u.nome AS usuario, COUNT(*) AS total_acertos
-        FROM RespostaUsuario ru
-        INNER JOIN Usuario u ON ru.fkUsuario = u.id
-        INNER JOIN Pergunta p ON ru.fkPergunta = p.id
+        FROM respostaUsuario ru
+        INNER JOIN usuario u ON ru.fkUsuario = u.id
+        INNER JOIN pergunta p ON ru.fkPergunta = p.id
         WHERE ru.resposta_dada = p.resposta_correta
         GROUP BY u.nome
         ORDER BY total_acertos DESC
@@ -27,7 +27,7 @@ function topUsuariosMaisAcertos() {
 function distribuicaoAlternativas() {
     var instrucaoSql = `
         SELECT resposta_dada AS alternativa, COUNT(*) AS total
-        FROM RespostaUsuario
+        FROM respostaUsuario
         GROUP BY resposta_dada;
     `;
     console.log("Executando SQL [distribuicaoAlternativas]:\n" + instrucaoSql);
@@ -44,9 +44,9 @@ function percentualAcertosQuestoes() {
             THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2
             ) AS percentual_acerto
         FROM 
-        RespostaUsuario ru
+        respostaUsuario ru
         INNER JOIN 
-        Pergunta p ON ru.fkPergunta = p.id
+        pergunta p ON ru.fkPergunta = p.id
         GROUP BY 
             p.id
         ORDER BY 
