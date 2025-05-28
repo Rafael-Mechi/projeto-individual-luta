@@ -20,7 +20,7 @@ function topUsuariosMaisAcertos() {
         ORDER BY total_acertos DESC
         LIMIT 5;
     `;
-    console.log("Executando SQL [topUsuariosMaisAcertos]:\n" + instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
@@ -30,29 +30,22 @@ function distribuicaoAlternativas() {
         FROM respostaUsuario
         GROUP BY resposta_dada;
     `;
-    console.log("Executando SQL [distribuicaoAlternativas]:\n" + instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function percentualAcertosQuestoes() {
     var instrucaoSql = `
-        SELECT 
-        CONCAT('Q: ', p.id) AS pergunta,
-            ROUND(
-            SUM(CASE 
-            WHEN ru.resposta_dada = p.resposta_correta
-            THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2
-            ) AS percentual_acerto
-        FROM 
-        respostaUsuario ru
-        INNER JOIN 
-        pergunta p ON ru.fkPergunta = p.id
-        GROUP BY 
-            p.id
-        ORDER BY 
-        p.id;
+        SELECT  fkPergunta,
+            COUNT(*) certas, 
+                (SELECT COUNT(*) from respostaUsuario tot where tot.fkPergunta = ru.fkPergunta) qtde_respostas
+        FROM respostaUsuario ru
+        JOIN pergunta pe on pe.id = fkPergunta 
+        WHERE pe.resposta_correta = ru.resposta_dada
+        GROUP BY fkPergunta;
+
     `;
-    console.log("Executando SQL [percentualAcertosQuestoes]:\n" + instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 

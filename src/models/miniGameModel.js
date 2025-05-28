@@ -20,6 +20,7 @@ function taxaVitoriasUsuarios() {
         GROUP BY u.nome
         ORDER BY taxa_vitoria DESC;
     `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
@@ -29,6 +30,7 @@ function distribuicaoResultados() {
         FROM luta
         GROUP BY resultado;
     `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
@@ -42,6 +44,7 @@ function lutadoresMaisEscolhidos() {
         GROUP BY l.nome
         ORDER BY total_escolhas DESC;
     `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
@@ -49,21 +52,22 @@ function lutadoresMaisEscolhidos() {
 function combinacoesLutadoresMaisFrequentes() {
     var instrucao = `
                     SELECT 
-        L1.nome AS Lutador_Escolhido,
-        L2.nome AS Lutador_Sorteado,
+        l1.nome AS Lutador_Escolhido,
+        l2.nome AS Lutador_Sorteado,
         COUNT(*) AS Quantidade_Duelos
     FROM 
         luta
     JOIN 
-        lutador L1 ON luta.fkLutadorEscolhido = L1.id
+        lutador l1 ON luta.fkLutadorEscolhido = l1.id
     JOIN 
-        lutador L2 ON luta.fkLutadorSorteado = L2.id
+        lutador l2 ON luta.fkLutadorSorteado = l2.id
     GROUP BY 
-        luta.fkLutadorEscolhido, luta.fkLutadorSorteado, L1.nome, L2.nome
+        luta.fkLutadorEscolhido, luta.fkLutadorSorteado, l1.nome, l2.nome
     ORDER BY 
         Quantidade_Duelos DESC
     LIMIT 5;
     `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
