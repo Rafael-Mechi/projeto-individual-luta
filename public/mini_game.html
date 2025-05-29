@@ -97,21 +97,21 @@
 </body>
 
 <script>
-    var lutadores = {
-        1: { nome: "Alex Pereira", img: "/assets/imgs/lutadores/alex_pereira.png", pontuacao: 2200 },
-        2: { nome: "Jon Jones", img: "/assets/imgs/lutadores/jon_jones.jpg", pontuacao: 2450 },
-        3: { nome: "Israel Adesanya", img: "/assets/imgs/lutadores/israel_adesanya.jpg", pontuacao: 2300 },
-        4: { nome: "Conor McGregor", img: "/assets/imgs/lutadores/conor_mcgregor.jpg", pontuacao: 2100 },
-        5: { nome: "Charles Oliveira", img: "/assets/imgs/lutadores/charles_oliveira.jpg", pontuacao: 2250 },
-        6: { nome: "Khabib Nurmagomedov", img: "/assets/imgs/lutadores/khabib_nurmagomedov.jpg", pontuacao: 2400 },
-        7: { nome: "Amanda Nunes", img: "/assets/imgs/lutadores/amanda_nunes.jpg", pontuacao: 2150 },
-        8: { nome: "Mica Galvão", img: "/assets/imgs/lutadores/mica_galvao.jpg", pontuacao: 1900 },
-        9: { nome: "Gordon Ryan", img: "/assets/imgs/lutadores/gordon_ryan.jpg", pontuacao: 2000 },
-        10: { nome: "Roger Gracie", img: "/assets/imgs/lutadores/roger_gracie.jpg", pontuacao: 1950 },
-        11: { nome: "Kayla Harrison", img: "/assets/imgs/lutadores/kayla_harrison.jpg", pontuacao: 1850 },
-        12: { nome: "Demetrious Johnson", img: "/assets/imgs/lutadores/demetrious_johnson.jpg", pontuacao: 2050 },
-        13: { nome: "Reinier de Ridder", img: "/assets/imgs/lutadores/reinier_de_ridder.jpg", pontuacao: 1750 }
-    };
+    var lutadores = [
+        {nome: "Alex Pereira", img: "/assets/imgs/lutadores/alex_pereira.png", pontuacao: 2200 },
+        {nome: "Jon Jones", img: "/assets/imgs/lutadores/jon_jones.jpg", pontuacao: 2450 },
+        {nome: "Israel Adesanya", img: "/assets/imgs/lutadores/israel_adesanya.jpg", pontuacao: 2300 },
+        {nome: "Conor McGregor", img: "/assets/imgs/lutadores/conor_mcgregor.jpg", pontuacao: 2100 },
+        {nome: "Charles Oliveira", img: "/assets/imgs/lutadores/charles_oliveira.jpg", pontuacao: 2250 },
+        {nome: "Khabib Nurmagomedov", img: "/assets/imgs/lutadores/khabib_nurmagomedov.jpg", pontuacao: 2400 },
+        {nome: "Amanda Nunes", img: "/assets/imgs/lutadores/amanda_nunes.jpg", pontuacao: 2150 },
+        {nome: "Mica Galvão", img: "/assets/imgs/lutadores/mica_galvao.jpg", pontuacao: 1900 },
+        {nome: "Gordon Ryan", img: "/assets/imgs/lutadores/gordon_ryan.jpg", pontuacao: 2000 },
+        {nome: "Roger Gracie", img: "/assets/imgs/lutadores/roger_gracie.jpg", pontuacao: 1950 },
+        {nome: "Kayla Harrison", img: "/assets/imgs/lutadores/kayla_harrison.jpg", pontuacao: 1850 },
+        {nome: "Demetrious Johnson", img: "/assets/imgs/lutadores/demetrious_johnson.jpg", pontuacao: 2050 },
+        {nome: "Reinier de Ridder", img: "/assets/imgs/lutadores/reinier_de_ridder.jpg", pontuacao: 1750 }
+];
 
     var qtdVitorias = 0;
     var qtdDerrotas = 0;
@@ -128,10 +128,10 @@
     selectLutador.addEventListener("change", function () {
         var id = this.value;
 
-        if (id && lutadores[id]) {
-            imgEscolhido.src = lutadores[id].img;
-            imgEscolhido.alt = lutadores[id].nome;
-            pEscolhido.textContent = lutadores[id].nome;
+        if (id && lutadores[id-1]) {
+            imgEscolhido.src = lutadores[id-1].img;
+            imgEscolhido.alt = lutadores[id-1].nome;
+            pEscolhido.textContent = lutadores[id-1].nome;
         } else {
             imgEscolhido.src = "";
             imgEscolhido.alt = "";
@@ -170,7 +170,7 @@
             return;
         }
 
-        var escolhido = lutadores[idLutadorEscolhido];
+        var escolhido = lutadores[idLutadorEscolhido -1];
         imgEscolhido.src = escolhido.img;
         imgEscolhido.alt = escolhido.nome;
         pEscolhido.innerHTML = `${escolhido.nome}<br>Pontuação: ${escolhido.pontuacao}`;
