@@ -36,13 +36,21 @@ function distribuicaoAlternativas() {
 
 function percentualAcertosQuestoes() {
     var instrucaoSql = `
-        SELECT  fkPergunta,
-            COUNT(*) certas, 
-                (SELECT COUNT(*) from respostaUsuario tot where tot.fkPergunta = ru.fkPergunta) qtde_respostas
-        FROM respostaUsuario ru
-        JOIN pergunta pe on pe.id = fkPergunta 
-        WHERE pe.resposta_correta = ru.resposta_dada
-        GROUP BY fkPergunta;
+                SELECT  
+        CONCAT('Q: ', fkPergunta) AS pergunta,
+        FORMAT(
+            COUNT(*) * 100.0 / 
+            (SELECT COUNT(*) 
+            FROM respostaUsuario tot 
+            WHERE tot.fkPergunta = ru.fkPergunta), 
+            2
+        ) AS percentual_acerto
+    FROM respostaUsuario ru
+    JOIN pergunta pe ON pe.id = fkPergunta 
+    WHERE pe.resposta_correta = ru.resposta_dada
+    GROUP BY fkPergunta
+    ORDER BY fkPergunta;
+
 
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

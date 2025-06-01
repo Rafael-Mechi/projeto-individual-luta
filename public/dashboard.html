@@ -35,7 +35,7 @@
     </div>
 
     <div class="container_kpi">
-        <div class="div_kpi">
+        <div class="div_kpi" id="kpi_lutador_mais_escolhido">
 
         </div>
 
@@ -117,8 +117,26 @@
             obterDistribuicaoResultados();
             obterTaxaVitorias();
             obterLutadoresMaisEscolhidos();
+            obterLutadorMaisEscolhido();
         };
 
+        function obterLutadorMaisEscolhido(){
+            fetch("/kpi/lutador-mais-escolhido", {cache: 'no-store'})
+                .then(response => {
+                    if(response.ok){
+                        response.json().then(resposta  => {
+                            console.log("Dado recebido: ", resposta );
+                            exibirLutadorMaisEscolhido(resposta );
+                        })
+                    }
+                })
+        }
+
+        function exibirLutadorMaisEscolhido(dado){
+            console.log("Iniciando exibição do lutador mais escolhido...");
+            
+            kpi_lutador_mais_escolhido.innerHTML = `Lutador mais escolhido:<br><br>${dado.nome_aparicoes}`;
+        }
 
         function obterDadosGraficoPreferencias() {
             fetch("/artes-marciais/preferencias", { cache: 'no-store' })

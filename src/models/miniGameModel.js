@@ -5,20 +5,22 @@ function salvarDuelo(idUsuario, idLutadorEscolhido, idLutadorSorteado, resultado
         INSERT INTO luta (fkUsuario, fkLutadorEscolhido, fkLutadorSorteado, resultado)
         VALUES (${idUsuario}, ${idLutadorEscolhido}, ${idLutadorSorteado}, '${resultado}');
     `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 function taxaVitoriasUsuarios() {
     var instrucao = `
-        SELECT 
+                SELECT 
             u.nome AS usuario,
             COUNT(*) AS total_lutas,
-            SUM(CASE WHEN l.resultado = 'vitória' THEN 1 ELSE 0 END) AS total_vitorias,
-            ROUND(SUM(CASE WHEN l.resultado = 'vitória' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS taxa_vitoria
+            SUM(l.resultado = 'vitória') AS total_vitorias,
+            ROUND(AVG(l.resultado = 'vitória') * 100, 2) AS taxa_vitoria
         FROM luta l
         JOIN usuario u ON l.fkUsuario = u.id
         GROUP BY u.nome
         ORDER BY taxa_vitoria DESC;
+
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
