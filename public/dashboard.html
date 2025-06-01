@@ -39,15 +39,15 @@
 
         </div>
 
-        <div class="div_kpi">
+        <div class="div_kpi" id="kpi_maior_combinacao">
 
         </div>
 
-        <div class="div_kpi">
+        <div class="div_kpi" id="kpi_questao_mais_erro">
 
         </div>
 
-        <div class="div_kpi">
+        <div class="div_kpi" id="kpi_preferencia_usuario">
 
         </div>
 
@@ -118,24 +118,75 @@
             obterTaxaVitorias();
             obterLutadoresMaisEscolhidos();
             obterLutadorMaisEscolhido();
+            obterCombinacaoMaisDuelos();
+            obterQuestaoComMaisErros();
+            obterPreferenciaDoUsuario();
         };
 
-        function obterLutadorMaisEscolhido(){
-            fetch("/kpi/lutador-mais-escolhido", {cache: 'no-store'})
+        function obterLutadorMaisEscolhido() {
+            fetch("/kpi/lutador-mais-escolhido", { cache: 'no-store' })
                 .then(response => {
-                    if(response.ok){
-                        response.json().then(resposta  => {
-                            console.log("Dado recebido: ", resposta );
-                            exibirLutadorMaisEscolhido(resposta );
+                    if (response.ok) {
+                        response.json().then(resposta => {
+                            console.log("Dado recebido: ", resposta);
+                            exibirLutadorMaisEscolhido(resposta);
                         })
                     }
                 })
         }
 
-        function exibirLutadorMaisEscolhido(dado){
+        function exibirLutadorMaisEscolhido(dado) {
             console.log("Iniciando exibição do lutador mais escolhido...");
-            
+
             kpi_lutador_mais_escolhido.innerHTML = `Lutador mais escolhido:<br><br>${dado.nome_aparicoes}`;
+        }
+
+        function obterCombinacaoMaisDuelos() {
+            fetch("/kpi/combinacao-com-mais-duelos", { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(resposta => {
+                            console.log("Dado recebido: ", resposta);
+                            exibirCombinacoesMaisDuelos(resposta);
+                        })
+                    }
+                })
+        }
+
+        function exibirCombinacoesMaisDuelos(duelo) {
+            kpi_maior_combinacao.innerHTML = `Maior duelo: <br><br>${duelo.duelo}`;
+        }
+
+        function obterQuestaoComMaisErros() {
+            fetch("/kpi/questao-com-mais-erros", { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(resposta => {
+                            console.log("Dado recebido: ", resposta);
+                            exibirQuestaoComMaisErros(resposta);
+                        })
+                    }
+                })
+        }
+
+        function exibirQuestaoComMaisErros(questao) {
+            kpi_questao_mais_erro.innerHTML = `Questão com mais errada: <br><br>Q:${questao.numero_da_pergunta}, ${questao.total_erros} erros`;
+        }
+
+        function obterPreferenciaDoUsuario() {
+            var idUsuario = sessionStorage.ID_USUARIO;
+
+            fetch(`/kpi/preferencia-do-usuario/${idUsuario}`, { cache: 'no-store' })
+                .then(response => {
+                    response.json().then(resposta => {
+                        console.log("Dado recebido: ", resposta);
+                        exibirPrefenciaDoUsuario(resposta);
+                    })
+                })
+        }
+
+        function exibirPrefenciaDoUsuario(preferencia) {
+            kpi_preferencia_usuario.innerHTML = `Sua arte marcial favorita: <br><br> ${preferencia.arte}`;
         }
 
         function obterDadosGraficoPreferencias() {
