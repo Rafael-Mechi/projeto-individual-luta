@@ -23,15 +23,6 @@ create table pergunta (
     resposta_correta CHAR(1) not null
 );
 
-create table alternativa (
-    id int primary key auto_increment,
-    alternativa char(1) not null,
-    texto_alternativa varchar(100) not null,
-    fkPergunta int not null,
-    foreign key (fkPergunta) references pergunta(id)
-);
-
-
 create table respostaUsuario (
     id int primary key auto_increment,
     fkUsuario int not null,
@@ -41,8 +32,6 @@ create table respostaUsuario (
     foreign key (fkPergunta) references pergunta(id),
     foreign key (fkUsuario) references usuario(id)
 );
-
-select * from respostaUsuario;
 
 create table lutador (
     id int primary key auto_increment,
@@ -196,19 +185,19 @@ SELECT resposta_dada AS alternativa, COUNT(*) AS total
 
 -- percentual de questões acertadas
 SELECT  
-        CONCAT('Q: ', fkPergunta) AS pergunta,
-        FORMAT(
-            COUNT(*) * 100.0 / 
-            (SELECT COUNT(*) 
-            FROM respostaUsuario tot 
-            WHERE tot.fkPergunta = ru.fkPergunta), 
-            2
-        ) AS percentual_acerto
-    FROM respostaUsuario ru
-    JOIN pergunta pe ON pe.id = fkPergunta 
-    WHERE pe.resposta_correta = ru.resposta_dada
-    GROUP BY fkPergunta
-    ORDER BY fkPergunta;
+		CONCAT('Q: ', fkPergunta) AS pergunta,
+		ROUND(
+		COUNT(*) * 100.0 / (
+			SELECT COUNT(*) 
+			FROM respostaUsuario tot 
+			WHERE tot.fkPergunta = ru.fkPergunta
+                ), 2) AS percentual_acerto
+        FROM respostaUsuario ru
+        JOIN pergunta pe ON pe.id = fkPergunta 
+        WHERE pe.resposta_correta = ru.resposta_dada
+        GROUP BY fkPergunta
+        ORDER BY fkPergunta;
+
 
 -- salvar duelo
 INSERT INTO luta (fkUsuario, fkLutadorEscolhido, fkLutadorSorteado, resultado)
