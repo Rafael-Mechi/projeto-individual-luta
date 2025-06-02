@@ -3,7 +3,7 @@ var database = require("../database/config");
 function registrarResposta(idUsuario, idPergunta, respostaDada) {
     var instrucao = `
         INSERT INTO respostaUsuario (fkUsuario, fkPergunta, resposta_dada)
-        VALUES (${idUsuario}, ${idPergunta}, UPPER('${respostaDada}'));
+        VALUES ('${idUsuario}', '${idPergunta}', UPPER('${respostaDada}'));
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

@@ -3,7 +3,7 @@ var database = require("../database/config");
 function salvarDuelo(idUsuario, idLutadorEscolhido, idLutadorSorteado, resultado) {
     var instrucao = `
         INSERT INTO luta (fkUsuario, fkLutadorEscolhido, fkLutadorSorteado, resultado)
-        VALUES (${idUsuario}, ${idLutadorEscolhido}, ${idLutadorSorteado}, '${resultado}');
+        VALUES ('${idUsuario}', '${idLutadorEscolhido}', '${idLutadorSorteado}', '${resultado}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -57,17 +57,17 @@ function combinacoesLutadoresMaisFrequentes() {
         l1.nome AS Lutador_Escolhido,
         l2.nome AS Lutador_Sorteado,
         COUNT(*) AS Quantidade_Duelos
-    FROM 
+        FROM 
         luta
-    JOIN 
+        JOIN 
         lutador l1 ON luta.fkLutadorEscolhido = l1.id
-    JOIN 
+        JOIN 
         lutador l2 ON luta.fkLutadorSorteado = l2.id
-    GROUP BY 
+        GROUP BY 
         luta.fkLutadorEscolhido, luta.fkLutadorSorteado, l1.nome, l2.nome
-    ORDER BY 
+        ORDER BY 
         Quantidade_Duelos DESC
-    LIMIT 5;
+        LIMIT 5;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

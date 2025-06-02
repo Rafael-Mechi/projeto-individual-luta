@@ -52,7 +52,7 @@ function obterPreferenciaDoUsuario(idUsuario) {
         SELECT u.id, u.nome AS Usuario, am.nome AS arte
         FROM usuario u
         INNER JOIN arte_marcial am ON am.id = u.fkArteMarcial
-        WHERE u.id = ${idUsuario};
+        WHERE u.id = '${idUsuario}';
     `;
     return database.executar(instrucao);
 }

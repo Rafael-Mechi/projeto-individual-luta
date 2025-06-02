@@ -74,6 +74,8 @@
     </div>
 </body>
 <script>
+    let listaUsuariosCadastrados = [];
+
     function cadastrar() {
         const nomeVar = ipt_nome.value;
         const emailVar = ipt_email.value;
@@ -96,6 +98,12 @@
         if (senhaVar !== confirmacaoSenhaVar) {
             alert("A senha e a confirmação de senha não coincidem.");
             return;
+        }
+
+        for(let i = 0; i < listaUsuariosCadastrados.length; i++){
+            if(listaUsuariosCadastrados[i].email){
+
+            }
         }
 
         fetch("/usuarios/cadastrar", {

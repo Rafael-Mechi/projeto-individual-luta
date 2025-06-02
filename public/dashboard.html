@@ -214,8 +214,8 @@
 
             for (let i = 0; i < dados.length; i++) {
                 let registro = dados[i];
-                labels.push(registro.arte_marcial || "Não informado");
-                valores.push(registro.total_usuarios || 0);
+                labels.push(registro.arte_marcial);
+                valores.push(registro.total_usuarios);
             }
 
             console.log("Labels:", labels);
