@@ -4,9 +4,9 @@ const MiniGameController = require('../controllers/miniGameController');
 
 router.post('/salvar_duelo', MiniGameController.salvarDuelo);
 
-router.get('/taxa-vitorias-usuarios', MiniGameController.graficoTaxaVitorias);
-router.get('/distribuicao-resultados', MiniGameController.graficoDistribuicaoResultados);
-router.get('/lutadores-mais-escolhidos', MiniGameController.graficoLutadoresMaisEscolhidos);
-router.get('/combinacoes-lutadores', MiniGameController.graficoCombinacoesLutadores);
+router.get('/usuarios-mais-vitoriosos', MiniGameController.qtdVitoriasUsuarios);
+router.get('/distribuicao-resultados', MiniGameController.distribuicaoResultados);
+router.get('/lutadores-mais-escolhidos', MiniGameController.lutadoresMaisEscolhidos);
+router.get('/combinacoes-lutadores', MiniGameController.combinacoesLutadores);
 
 module.exports = router;

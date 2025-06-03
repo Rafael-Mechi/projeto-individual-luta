@@ -34,21 +34,13 @@ function distribuicaoAlternativas() {
     return database.executar(instrucaoSql);
 }
 
-function percentualAcertosQuestoes() {
+function qtdAcertosQuestoes() {
     var instrucaoSql = `
-                SELECT  
-            CONCAT('Q: ', fkPergunta) AS pergunta,
-            ROUND(
-            COUNT(*) * 100.0 / (
-                SELECT COUNT(*) 
-                FROM respostaUsuario tot 
-                WHERE tot.fkPergunta = ru.fkPergunta
-                ), 2) AS percentual_acerto
-        FROM respostaUsuario ru
-        JOIN pergunta pe ON pe.id = fkPergunta 
-        WHERE pe.resposta_correta = ru.resposta_dada
-        GROUP BY fkPergunta
-        ORDER BY fkPergunta;
+                    SELECT fkPergunta as pergunta, COUNT(*) as qtdAcertos FROM pergunta p
+    INNER JOIN respostaUsuario ru on ru.fkPergunta = p.id
+    WHERE ru.resposta_dada = p.resposta_correta
+    GROUP BY pergunta
+    order by pergunta;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -58,5 +50,5 @@ module.exports = {
     registrarResposta,
     topUsuariosMaisAcertos,
     distribuicaoAlternativas,
-    percentualAcertosQuestoes
+    qtdAcertosQuestoes
 };

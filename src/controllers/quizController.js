@@ -69,8 +69,8 @@ function distribuicao(req, res) {
         });
 }
 
-function percentualQuestoes(req, res) {
-    quizModel.percentualAcertosQuestoes()
+function qtdAcertosQuestoes(req, res) {
+    quizModel.qtdAcertosQuestoes()
         .then(resultado => {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -88,5 +88,5 @@ module.exports = {
     responder,
     topUsuarios,
     distribuicao,
-    percentualQuestoes
+    qtdAcertosQuestoes
 };

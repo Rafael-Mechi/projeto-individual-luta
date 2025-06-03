@@ -21,8 +21,8 @@ function salvarDuelo(req, res) {
         });
 }
 
-function graficoTaxaVitorias(req, res) {
-    miniGameModel.taxaVitoriasUsuarios()
+function qtdVitoriasUsuarios(req, res) {
+    miniGameModel.qtdVitoriasUsuarios()
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => {
             console.log("Erro ao obter taxa de vitórias: ", erro.sqlMessage);
@@ -30,7 +30,7 @@ function graficoTaxaVitorias(req, res) {
         });
 }
 
-function graficoDistribuicaoResultados(req, res) {
+function distribuicaoResultados(req, res) {
     miniGameModel.distribuicaoResultados()
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => {
@@ -39,7 +39,7 @@ function graficoDistribuicaoResultados(req, res) {
         });
 }
 
-function graficoLutadoresMaisEscolhidos(req, res) {
+function lutadoresMaisEscolhidos(req, res) {
     miniGameModel.lutadoresMaisEscolhidos()
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => {
@@ -48,7 +48,7 @@ function graficoLutadoresMaisEscolhidos(req, res) {
         });
 }
 
-function graficoCombinacoesLutadores(req, res) {
+function combinacoesLutadores(req, res) {
     miniGameModel.combinacoesLutadoresMaisFrequentes()
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => {
@@ -60,8 +60,8 @@ function graficoCombinacoesLutadores(req, res) {
 
 module.exports = {
     salvarDuelo,
-    graficoTaxaVitorias,
-    graficoDistribuicaoResultados,
-    graficoCombinacoesLutadores,
-    graficoLutadoresMaisEscolhidos
+    qtdVitoriasUsuarios,
+    distribuicaoResultados,
+    lutadoresMaisEscolhidos,
+    combinacoesLutadores
 };

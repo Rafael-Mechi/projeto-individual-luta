@@ -250,7 +250,7 @@
     function responder() {
         const idUsuario = sessionStorage.ID_USUARIO;
 
-        if (!idUsuario) {
+        if (idUsuario == null) {
             alert("Usuário não logado.");
             return;
         }
@@ -273,12 +273,12 @@
 
         for (let i = 1; i <= 10; i++) {
             const resposta = document.querySelector(`input[name="questao_${i}"]:checked`);
-            if (!resposta) {
+            if (!resposta.checked) {
                 alert(`Por favor, responda todas as perguntas.`);
                 return;
             }
 
-            respostas.push({ idPergunta: i, resposta: resposta.value });
+            respostas.push({idPergunta: i, resposta: resposta.value});
 
             if (resposta.value === respostasCorretas[i]) {
                 certas++;

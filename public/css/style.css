@@ -77,248 +77,248 @@ html {
 }
 
 .index_historia_modernidade {
-  padding: 150px;
-  background-color: rgb(77, 75, 75);
+    padding: 150px;
+    background-color: rgb(77, 75, 75);
 }
 
 .index_historia_modernidade_conteudo {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
 }
 
 .index_titulo_historia_modernidade {
-  color: white;
-  width: 50%;
-  font-size: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    color: white;
+    width: 50%;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .index_container_subtitulos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  width: 50%;
-  color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 50%;
+    color: white;
 }
 
-.index_subtitulo h3{
+.index_subtitulo h3 {
     font-size: 30px;
 }
 
-.index_subtitulo p{
+.index_subtitulo p {
     font-size: 20px;
 }
 
 .index_mini_game {
-  padding: 100px;
-  background-color: #121212;
-  color: white;
+    padding: 100px;
+    background-color: #121212;
+    color: white;
 }
 
 .index_mini_game_titulo h1 {
-  font-size: 40px;
-  margin-bottom: 40px;
+    font-size: 40px;
+    margin-bottom: 40px;
 }
 
 .index_mini_game_conteudo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
 }
 
 .index_mini_game_texto {
-  width: 50%;
+    width: 50%;
 }
 
 .index_mini_game_texto h2 {
-  font-size: 30px;
-  margin-bottom: 16px;
+    font-size: 30px;
+    margin-bottom: 16px;
 }
 
 .index_mini_game_texto p {
-  font-size: 25px;
+    font-size: 25px;
 }
 
 .index_mini_game_img {
-  width: 50%;
-  display: flex;
-  justify-content: center;
+    width: 50%;
+    display: flex;
+    justify-content: center;
 }
 
 .index_mini_game_img img {
-  max-width: 100%;
-  height: 400px;
-  border-radius: 16px;
+    max-width: 100%;
+    height: 400px;
+    border-radius: 16px;
 }
 
 .index_quiz {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 60px;
-  padding: 60px 80px;
-  background-color: #121212;
-  color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 60px;
+    padding: 60px 80px;
+    background-color: #121212;
+    color: white;
 }
 
 .index_quiz_conteudo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60vh;
 }
 
 .index_quiz_img,
 .index_quiz_txt {
-  width: 50%;
+    width: 50%;
 }
 
 .index_quiz_img img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
 }
 
 .index_quiz_txt h1 {
-  font-size: 40px;
-  margin-bottom: 16px;
+    font-size: 40px;
+    margin-bottom: 16px;
 }
 
 .index_quiz_txt p {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 /* Seção das estatísticas: 75/25 */
 .index_quiz {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 100px;
-  background-color: #121212;
-  color: white;
-  gap: 80px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 100px;
+    background-color: #121212;
+    color: white;
+    gap: 80px;
 }
 
 /* Quiz - 50% imagem / 50% texto */
 .index_quiz_conteudo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .index_quiz_img {
-  width: 50%;
+    width: 50%;
 }
 
 .index_quiz_img img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
 }
 
 .index_quiz_txt {
-  width: 50%;
-  padding-left: 40px;
+    width: 50%;
+    padding-left: 40px;
 }
 
 .index_quiz_txt h1 {
-  font-size: 36px;
-  margin-bottom: 16px;
+    font-size: 36px;
+    margin-bottom: 16px;
 }
 
 .index_quiz_txt p {
-  font-size: 18px;
-  line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.6;
 }
 
 
 /* Estatísticas - 75% imagem / 25% texto */
 .index_quiz_estatisticas {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .index_estatisticas_img {
-  width: 60%;
+    width: 60%;
 }
 
 .index_estatisticas_img img {
-  width: 100%;
-  height: 1000px;
-  border-radius: 12px;
+    width: 100%;
+    height: 1000px;
+    border-radius: 12px;
 }
 
 .index_estatisticas_txt {
-  background-color: #5f666d;
-  padding: 30px;
-  border-radius: 20px;
-  width: 25%;
+    background-color: #5f666d;
+    padding: 30px;
+    border-radius: 20px;
+    width: 25%;
 }
 
 .index_estatisticas_txt h2 {
-  font-size: 40px;
+    font-size: 40px;
 }
 
 .index_estatisticas_txt p {
-  font-size: 25px;
+    font-size: 25px;
 }
 
 .index_fim {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  background-color: #dad5d5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #dad5d5;
 }
 
 .index_fim_textinho_botao {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 40px;
-  background-color: #639EEC;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 40px;
+    background-color: #639EEC;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
 }
 
 .index_fim_textinho h1 {
-  font-size: 90px;
-  margin-bottom: 20px;
-  color: #ffffff;
+    font-size: 90px;
+    margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .index_fim_textinho h2 {
-  font-size: 40px;
-  color: #f0f0f0;
+    font-size: 40px;
+    color: #f0f0f0;
 }
 
 .index_fim_textinho u {
-  text-decoration: underline;
-  color: #002a77;
-  font-weight: bold;
+    text-decoration: underline;
+    color: #002a77;
+    font-weight: bold;
 }
 
 .index_fim_botao button {
-  border: none;
-  font-size: 35px;
-  background-color: #1864C7;
-  color: white;
-  padding: 16px 40px;
-  border-radius: 12px;
-  margin-top: 30px;
-  cursor: pointer;
+    border: none;
+    font-size: 35px;
+    background-color: #1864C7;
+    color: white;
+    padding: 16px 40px;
+    border-radius: 12px;
+    margin-top: 30px;
+    cursor: pointer;
 }
 
 .index_fim_botao button:hover {
-  background-color: #124ea0;
+    background-color: #124ea0;
 }
 
 
@@ -388,6 +388,16 @@ html {
     outline: none;
     border-color: #317fe6;
     box-shadow: 0 0 5px rgba(49, 127, 230, 0.3);
+}
+
+.campo select {
+    outline: none;
+    border-color: #317fe6;
+    box-shadow: 0 0 5px rgba(49, 127, 230, 0.3);
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 9px;
+    background-color: white;
 }
 
 .div_btn_cadastrar {
@@ -561,7 +571,7 @@ canvas {
     display: block;
 }
 
-.container_mini_game{
+.container_mini_game {
     display: flex;
     justify-content: center;
 }
@@ -982,6 +992,12 @@ canvas {
 
 .selecao select {
     margin-bottom: 20px;
+    outline: none;
+    border-color: #317fe6;
+    box-shadow: 0 0 5px rgba(49, 127, 230, 0.3);
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 .selecao button {
@@ -1021,7 +1037,7 @@ canvas {
     background-color: #f5f5f5;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
     margin-left: auto;
     margin-right: auto;
@@ -1036,6 +1052,7 @@ canvas {
     font-size: 20px;
     margin: 5px 0;
 }
+
 /*FIM SELEÇÃO PERSONAGEM*/
 
 

@@ -9,17 +9,15 @@ function salvarDuelo(idUsuario, idLutadorEscolhido, idLutadorSorteado, resultado
     return database.executar(instrucao);
 }
 
-function taxaVitoriasUsuarios() {
+function qtdVitoriasUsuarios() {
     var instrucao = `
-                SELECT 
-            u.nome AS usuario,
-            COUNT(*) AS total_lutas,
-            SUM(l.resultado = 'vitória') AS total_vitorias,
-            ROUND(AVG(l.resultado = 'vitória') * 100, 2) AS taxa_vitoria
-        FROM luta l
-        JOIN usuario u ON l.fkUsuario = u.id
-        GROUP BY u.nome
-        ORDER BY taxa_vitoria DESC;
+                SELECT u.nome AS usuario,
+            COUNT(*) AS total_lutas FROM usuario u
+            INNER JOIN luta l on l.fkUsuario = u.id
+            WHERE l.resultado = 'vitoria'
+            GROUP BY u.nome
+            ORDER BY total_lutas DESC
+            LIMIT 5;
 
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -76,7 +74,7 @@ function combinacoesLutadoresMaisFrequentes() {
 
 module.exports = {
     salvarDuelo,
-    taxaVitoriasUsuarios,
+    qtdVitoriasUsuarios,
     distribuicaoResultados,
     lutadoresMaisEscolhidos,
     combinacoesLutadoresMaisFrequentes

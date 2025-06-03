@@ -15,8 +15,8 @@ router.get("/distribuicao-alternativas", function (req, res){
     quizController.distribuicao(req, res);
 });
 
-router.get("/percentual-questoes", function (req, res){
-    quizController.percentualQuestoes(req, res);
+router.get("/questoes-certas", function (req, res){
+    quizController.qtdAcertosQuestoes(req, res);
 });
 
 module.exports = router;

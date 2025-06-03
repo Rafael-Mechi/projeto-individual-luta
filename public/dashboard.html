@@ -63,19 +63,19 @@
 
             <div class="container_barras_distribuicao_quiz">
                 <div class="container_grafico_barras">
-                    <h2>Usuários com mais acertos</h2>
+                    <h2>Usuários com Mais Acertos</h2>
                     <canvas id="graficoTopUsuarios"></canvas>
                 </div>
 
                 <div class="container_grafico_pizza">
-                    <h2>Distribuição de alternativas marcadas</h2>
+                    <h2>Distribuição de Alternativas Marcadas</h2>
                     <canvas id="graficoDistribuicaoAlternativas"></canvas>
                 </div>
             </div>
 
             <div class="container_linha_quiz">
                 <div class="container_grafico_linha">
-                    <h2>Porcentagem de acertos nas questões</h2>
+                    <h2>Quantidade de Acertos por Questões</h2>
                     <canvas id="graficoPercentualQuestoes"></canvas>
                 </div>
             </div>
@@ -89,7 +89,7 @@
 
             <div class="container_barras_distribuicao_mini_game">
                 <div class="container_grafico_barras_mini_game">
-                    <h2>Taxa de Vitórias entre Usuários</h2>
+                    <h2>Quantidade de Vitórias entre Usuários</h2>
                     <canvas id="graficoTaxaVitorias"></canvas>
                 </div>
 
@@ -113,7 +113,7 @@
             obterDadosGraficoPreferencias();
             obterTopUsuarios();
             obterDistribuicaoAlternativas();
-            obterPercentualQuestoes();
+            obterQuestoesCertas();
             obterDistribuicaoResultados();
             obterTaxaVitorias();
             obterLutadoresMaisEscolhidos();
@@ -323,7 +323,9 @@
                     },
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks:{
+                            }
                         }
                     }
                 }
@@ -411,13 +413,13 @@
         }
 
 
-        function obterPercentualQuestoes() {
-            fetch("/quiz/percentual-questoes", { cache: 'no-store' })
+        function obterQuestoesCertas() {
+            fetch("/quiz/questoes-certas", { cache: 'no-store' })
                 .then(response => {
                     if (response.ok) {
                         response.json().then(dados => {
                             console.log("Dados do percentual de acertos por questão:", dados);
-                            plotarGraficoPercentualQuestoes(dados);
+                            plotarGraficoAcertoQuestoes(dados);
                         });
                     } else {
                         console.error("Erro ao obter percentual de acertos:", response.status);
@@ -428,28 +430,34 @@
                 });
         }
 
-        function plotarGraficoPercentualQuestoes(dados) {
+        function plotarGraficoAcertoQuestoes(dados) {
             console.log("Iniciando plotagem do gráfico de percentual de acertos...");
 
             let perguntas = [];
-            let percentuais = [];
+            let certas = [];
 
             for (let i = 0; i < dados.length; i++) {
                 let registro = dados[i];
                 perguntas.push(registro.pergunta);
-                percentuais.push(registro.percentual_acerto);
+                certas.push(registro.qtdAcertos);
+                console.log("++++++++++++++++++++");
+                console.log(registro);
+                console.log("++++++++++++++++++++");
+                
+                
+                
             }
 
             console.log("Perguntas:", perguntas);
-            console.log("Percentuais:", percentuais);
+            console.log("Quantidade de perguntas:", certas);
 
             const config = {
                 type: 'line',
                 data: {
                     labels: perguntas,
                     datasets: [{
-                        label: 'Percentual de Acertos (%)',
-                        data: percentuais,
+                        label: 'Quantidade de acertos',
+                        data: certas,
                         borderColor: 'rgba(255, 159, 64, 1)',
                         backgroundColor: 'rgba(255, 159, 64, 0.5)'
                     }]
@@ -462,13 +470,13 @@
                         },
                         title: {
                             display: true,
-                            text: 'Porcentagem de Acertos por Questão'
+                            text: 'Quantidade de acertos por questão'
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 100
+                            
                         }
                     }
                 }
@@ -520,14 +528,14 @@
                         label: 'Distribuição de Resultados',
                         data: valores,
                         backgroundColor: [
-                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
                             'rgba(255, 99, 132, 0.7)',
-                            'rgba(255, 206, 86, 0.7)'
+                            'rgba(75, 192, 192, 0.7)'
                         ],
                         borderColor: [
-                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 206, 86, 1)',
                             'rgba(255, 99, 132, 1)',
-                            'rgba(255, 206, 86, 1)'
+                            'rgba(75, 192, 192, 1)'
                         ],
                         borderWidth: 1
                     }]
@@ -554,7 +562,7 @@
 
 
         function obterTaxaVitorias() {
-            fetch("/mini-game/taxa-vitorias-usuarios", { cache: 'no-store' })
+            fetch("/mini-game/usuarios-mais-vitoriosos", { cache: 'no-store' })
                 .then(response => {
                     if (response.ok) {
                         response.json().then(dados => {
@@ -576,8 +584,8 @@
             let valores = [];
 
             for (let i = 0; i < dados.length; i++) {
-                labels.push(dados[i].usuario || "Usuário desconhecido");
-                valores.push(dados[i].taxa_vitoria || 0);
+                labels.push(dados[i].usuario);
+                valores.push(dados[i].total_lutas);
             }
 
             const ctx = document.getElementById('graficoTaxaVitorias').getContext('2d');
@@ -587,23 +595,22 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Taxa de Vitórias (%)',
+                        label: 'Quantidade de vitórias',
                         data: valores,
                         backgroundColor: 'rgba(54, 162, 235, 0.7)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     }]
                 },
+
+                
                 options: {
                     responsive: true,
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 100,
+                            max: 20,
                             ticks: {
-                                callback: function (value) {
-                                    return value + '%';
-                                }
                             }
                         }
                     },
@@ -613,7 +620,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'Taxa de Vitórias entre Usuários'
+                            text: 'Quantidade de vitórias entre os usuários'
                         }
                     }
                 }
