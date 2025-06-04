@@ -52,7 +52,42 @@ function cadastrar(req, res) {
     }
 }
 
+function alterarSenha(req, res) {
+    var email = req.body.emailServer;
+    var senhaAntiga = req.body.senhaAntigaServer;
+    var senhaNova = req.body.senhaNovaServer;
+    var repetirSenha = req.body.repetirSenhaServer;
+
+    if (email == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (senhaAntiga == undefined) {
+        res.status(400).send("Sua senha antiga está undefined!");
+    } else if (senhaNova == undefined) {
+        res.status(400).send("Sua senha nova está undefined!");
+    } else if (repetirSenha == undefined) {
+        res.status(400).send("Sua senha repetida está undefined!");
+    }
+
+    usuarioModelLuta.alterarSenha(email, senhaNova)
+        .then(resultado => {
+            console.log("Senha alterada: ", resultado);
+            res.status(200).send("Senha alterada com sucesso!");
+        })
+        .catch(erro => {
+            console.log("Houve um erro ao atualizar a senha:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function listar(req, res) {
+    usuarioModelLuta.listar().then((resultado) => {
+        res.status(200).json(resultado);
+    });
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    alterarSenha,
+    listar
 }

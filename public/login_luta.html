@@ -37,22 +37,26 @@
                 <input type="password" id="ipt_senha" placeholder="••••••">
             </div>
 
+            <div class="campo" id="campo_esquecisenha">
+                <span>Quer mudar a senha? Clique <a href="alterarSenha.html" id="a_esquecisenha">Aqui</a></span>
+            </div>
+
             <div class="div_btn_cadastrar">
                 <button onclick="entrar()" id="btn_cadastrar">Entrar</button>
             </div>
-            
+
         </div>
     </div>
 </body>
-    <script>
-        function entrar() {
+<script>
+    function entrar() {
 
         var emailVar = ipt_email.value;
         var senhaVar = ipt_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
             alert("Campos em branco");
-            return false;
+            return;
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -102,6 +106,6 @@
 
         return false;
     }
-    </script>
+</script>
 
 </html>

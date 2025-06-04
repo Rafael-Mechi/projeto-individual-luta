@@ -8,7 +8,7 @@
     <title>Cadastro</title>
 </head>
 
-<body>
+<body onload="listar()">
     <div class="header">
         <div class="container">
             <a href="index.html"><img src="assets/imgs/logo_sem_fundo_branco.png" alt="Logo"
@@ -74,14 +74,14 @@
     </div>
 </body>
 <script>
-    let listaUsuariosCadastrados = [];
+    var listaUsuariosCadastrados = [];
 
     function cadastrar() {
-        const nomeVar = ipt_nome.value;
-        const emailVar = ipt_email.value;
-        const senhaVar = ipt_senha.value;
-        const confirmacaoSenhaVar = ipt_confirmar_senha.value;
-        const fkArtemarcial = select_arte_marcial.value;
+        var nomeVar = ipt_nome.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+        var confirmacaoSenhaVar = ipt_confirmar_senha.value;
+        var fkArtemarcial = select_arte_marcial.value;
 
         if (
             nomeVar === "" ||
@@ -100,9 +100,10 @@
             return;
         }
 
-        for(let i = 0; i < listaUsuariosCadastrados.length; i++){
-            if(listaUsuariosCadastrados[i].email){
-
+        for (let i = 0; i < listaUsuariosCadastrados.length; i++) {
+            if (listaUsuariosCadastrados[i].email == emailVar) {
+                alert("Esse usuário já possui cadastro");
+                return;
             }
         }
 
@@ -131,6 +132,25 @@
                 alert("Erro na conexão com o servidor.");
             });
     }
+
+    function listar() {
+            fetch("/usuarios/listar", {
+                method: "GET",
+            })
+                .then(function (resposta) {
+                    resposta.json().then((usuarios) => {
+                        usuarios.forEach((usuario) => {
+                            listaUsuariosCadastrados.push(usuario);
+
+                            console.log("Usuarios cadastrados")
+                            console.log(usuarios);
+                        });
+                    });
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+        }
 
 </script>
 

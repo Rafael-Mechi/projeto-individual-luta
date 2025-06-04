@@ -24,7 +24,26 @@ function cadastrar(nome, email, senha, fkArtemarcial) {
     return database.executar(instrucaoSql);
 }
 
+function alterarSenha(email, senha){
+    console.log("ENTRANDO NO MODEL PARA ALTERAR SENHA: ", email, senha);
+    
+    var instrucaoSql = `
+        UPDATE usuario SET senha = '${senha}' WHERE email = '${email}';
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listar() {
+  var instrucaoSql = `SELECT email, senha FROM usuario`;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    alterarSenha,
+    listar
 };

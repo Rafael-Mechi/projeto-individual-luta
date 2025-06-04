@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Alterar senha</title>
+</head>
+
+<body onclick="listar()">
+    <div class="header">
+        <div class="container">
+            <a href="menu.html"><img src="assets/imgs/logo_sem_fundo_branco.png" alt="Logo"
+                    style="height: var(--tamanho-header); width: 90px;"></a>
+            <ul class="navbar">
+                <li>
+                    <a href="login_luta.html" id="a_login">Login</a>
+                </li>
+                <li>
+                    <a href="cadastro_luta.html">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container_cadastro">
+        <div class="formulario">
+            <div class="campo">
+                <h4>Seu Email</h4>
+                <input type="text" id="ipt_email" placeholder="exemplo@gmail.com">
+            </div>
+
+            <div class="campo">
+                <h4>Senha Antiga</h4>
+                <input type="password" id="ipt_senha_antiga" placeholder="••••••">
+            </div>
+
+            <div class="campo">
+                <h4>Nova Senha</h4>
+                <input type="password" id="ipt_senha_nova" placeholder="••••••">
+            </div>
+
+            <div class="campo">
+                <h4>Repetir senha</h4>
+                <input type="password" id="ipt_senha_repetida" placeholder="••••••">
+            </div>
+
+            <div class="div_btn_cadastrar">
+                <button onclick="alterarSenha()" id="btn_cadastrar">Alterar senha</button>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script>
+
+    var listaUsuariosCadastrados = [];
+
+    function alterarSenha() {
+
+        var emailVar = ipt_email.value;
+        var senhaAntigaVar = ipt_senha_antiga.value;
+        var senhaNovaVar = ipt_senha_nova.value;
+        var repetirSenhaVar = ipt_senha_repetida.value;
+        var podeAlterarSenha = false;
+
+        if (emailVar == "" || senhaAntigaVar == "" || senhaNovaVar == "" || repetirSenhaVar == "") {
+            alert("Campos em branco");
+            return;
+        }
+
+        for (let i = 0; i < listaUsuariosCadastrados.length; i++) {
+            if (listaUsuariosCadastrados[i].senha == senhaAntigaVar) {
+                podeAlterarSenha = true;
+            }
+        }
+
+        if (senhaNovaVar != repetirSenhaVar) {
+            alert("As senhas precisam ser iguais");
+            return;
+        }
+
+        if (!podeAlterarSenha) {
+            alert("Sua senha não é a mesma do que a atual para poder fazer a atualização");
+            return;
+        }
+
+        else {
+            fetch("/usuarios/mudar-senha", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaAntigaServer: senhaAntigaVar,
+                    senhaNovaServer: senhaNovaVar,
+                    repetirSenhaServer: repetirSenhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+                    alert("Senha alterada com sucesso!")
+                    window.location = "./login_luta.html";
+                    return;
+
+                } else {
+                    console.log("Houve um erro ao tentar alterar a senha!");
+                    return;
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+        }
+    }
+
+    function listar() {
+        fetch("/usuarios/listar", {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((usuarios) => {
+                    usuarios.forEach((usuario) => {
+                        listaUsuariosCadastrados.push(usuario);
+                    });
+                console.log("Informações dos usuarios cadastrados: ")
+                console.log(usuarios);
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+</script>
+
+</html>
