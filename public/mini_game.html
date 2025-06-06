@@ -72,13 +72,7 @@
 
     </div>
 
-    <div class="container_vencedor" id="container_vencedor" style="margin-top: 40px;">
-
-        <h2>Placar do Usuário</h2>
-        <p>Vitórias: <span id="vitorias">0</span></p>
-        <p>Derrotas: <span id="derrotas">0</span></p>
-        <p>Empates: <span id="empates">0</span></p>
-
+    <div class="container_vencedor" id="div_vencedor" style="margin-top: 40px;">
     </div>
 
     <div class="footer">
@@ -128,14 +122,13 @@
     selectLutador.addEventListener("change", function () {
         var id = this.value;
 
-        if (id && lutadores[id-1]) {
+        if (id != undefined && lutadores[id-1] != undefined) {
             imgEscolhido.src = lutadores[id-1].img;
             imgEscolhido.alt = lutadores[id-1].nome;
             pEscolhido.textContent = lutadores[id-1].nome;
         } else {
             imgEscolhido.src = "";
             imgEscolhido.alt = "";
-            pEscolhido.textContent = "";
         }
     });
 
@@ -146,19 +139,14 @@
         var valor = Math.floor(aux * (max - min + 1)) + min;
 
         var sorteado = lutadores[valor];
-
-        if (!sorteado) {
-            alert("Erro ao sortear lutador. Tente novamente.");
-            return;
-        }
-
+        
         imgSorteado.src = sorteado.img;
         imgSorteado.alt = sorteado.nome;
         pSorteado.innerHTML = `${sorteado.nome}<br>Pontuação: ${sorteado.pontuacao}`;
 
         var idUsuario = sessionStorage.ID_USUARIO;
 
-        if (!idUsuario) {
+        if (idUsuario == undefined) {
             alert("Usuário não logado.");
             return;
         }
@@ -167,7 +155,7 @@
 
         if (!idLutadorEscolhido) {
             alert("Selecione um lutador antes de sortear.");
-            return;
+            window.location = "./mini_game.html";
         }
 
         var escolhido = lutadores[idLutadorEscolhido -1];
@@ -185,8 +173,11 @@
             qtdDerrotas++;
         }
 
-        const divResultado = document.getElementById("container_vencedor");
-        divResultado.innerHTML = `<h2>Resultado: ${resultado}</h2><br><h3>Vitórias: ${qtdVitorias}</h3><br><h3>Derrotas: ${qtdDerrotas}</h3><br><h3>Empates: ${qtdEmpates}</h3>`;
+        else{
+            qtdEmpates++;
+        }
+
+        div_vencedor.innerHTML = `<h2>Resultado: ${resultado}</h2><br><h3>Vitórias: ${qtdVitorias}</h3><br><h3>Derrotas: ${qtdDerrotas}</h3><br><h3>Empates: ${qtdEmpates}</h3>`;
 
         fetch("/mini-game/salvar_duelo", {
             method: "POST",
