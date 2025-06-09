@@ -82,6 +82,18 @@ insert into lutador (nome, pontuacao, fkArteMarcial) values
 ('demetrious_johnson', 2050, 9),
 ('reinier_de_ridder', 1750, 9);
 
+insert into pergunta (enunciado, resposta_correta) values
+('Quantas faixas existem no jiu jitsu, incluindo até a preta?', 'D'),
+('Qual dos lutadores abaixo já foi campeão duplo no UFC?', 'B'),
+('Qual das artes marciais abaixo é conhecida por usar, além de socos e chutes, joelhadas e cotoveladas?', 'C'),
+('Qual arte marcial é conhecida pelo estilo de luta em quedas?', 'D'),
+('Em qual país o Muay Thai é uma arte marcial tradicional?', 'A'),
+('Qual evento teve mais audiência do UFC?', 'C'),
+('A trilogia Creed é inspirada em qual estilo de luta?', 'B'),
+('Qual dos personagens abaixo de street fighter luta karatê?', 'B'),
+('Qual dos golpes abaixo é popular no boxe?', 'D'),
+('Qual dos animes abaixo é conhecido por ser um anime de luta?', 'A');
+
 -- autenticar usuario
 SELECT id, nome, email FROM usuario 
         WHERE email = '${email}' AND senha = '${senha}';
