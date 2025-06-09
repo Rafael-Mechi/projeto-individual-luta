@@ -52,6 +52,36 @@ create table luta (
     foreign key (fkLutadorSorteado) references lutador(id)
 );
 
+insert into arte_marcial (id, nome) values
+(1, 'Aikido'),
+(2, 'Boxe'),
+(3, 'Capoeira'),
+(4, 'Jiu-Jitsu'),
+(5, 'Judo'),
+(6, 'Karatê'),
+(7, 'Kickboxing'),
+(8, 'Kung Fu'),
+(9, 'MMA'),
+(10, 'Muay Thai'),
+(11, 'Taekwondo'),
+(12, 'Wing Chun'),
+(13, 'Wrestling');
+
+insert into lutador (nome, pontuacao, fkArteMarcial) values
+('alex_pereira', 2200, 7),
+('jon_jones', 2450, 9),
+('israel_adesanya', 2300, 7),
+('conor_mcgregor', 2100, 9),
+('charles_oliveira', 2250, 4),
+('khabib_nurmagomedov', 2400, 13),
+('amanda_nunes', 2150, 9),
+('mica_galvao', 1900, 4),
+('gordon_ryan', 2000, 4),
+('roger_gracie', 1950, 4),
+('kayla_harrison', 1850, 5),
+('demetrious_johnson', 2050, 9),
+('reinier_de_ridder', 1750, 9);
+
 -- autenticar usuario
 SELECT id, nome, email FROM usuario 
         WHERE email = '${email}' AND senha = '${senha}';
